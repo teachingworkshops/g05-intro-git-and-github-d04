@@ -6,4 +6,3 @@ last? Can you survive long enough to be rescued?
 
 
 
-quinn was here
