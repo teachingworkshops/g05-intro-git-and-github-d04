@@ -17,6 +17,9 @@ class location:
 
 
 class interactable:
+    def __init__(self, name):
+        self.name = name
+
     name = "interactable"
     desc = "description of interactable"
     actions = ["use"]
@@ -36,17 +39,36 @@ def buildWorld():
     you = player
     mars = location("Mars", "the planet")
     lander = location("lander", "your space ship (no fuel)")
+    lander.interactables = [interactable("wrench")]
     mars.adjLocations = [lander]
     you.currentLocation = mars
     return you
 
 
 def main():
+    actionAliases = {"goto": "go"}
     you = buildWorld()
     print("You are on", you.currentLocation.name)
     while you.alive:
         you.currentLocation.showPlayer()
-        action = input()
+
+        userText = input()
+        userWords = userText.split(" ")
+        verb = userWords[0]
+        target = userText[len(verb) + 1 :]
+
+        lookedUpAction = actionAliases.get(verb.lower())
+        if lookedUpAction:
+            verb = lookedUpAction
+
+        if verb.lower() == "go":
+            for l in you.currentLocation.adjLocations:
+                if l.name.lower() == target:
+                    you.currentLocation = l
+                    break
+        else:
+            print("Invalid action")
+            # print actions
 
 
 if __name__ == "__main__":
