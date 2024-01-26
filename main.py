@@ -35,13 +35,25 @@ class player:
     alive: bool = True
 
 
+
 def buildWorld():
-    you = player
-    mars = location("Mars", "the planet")
+
+    marsSurface = location("mars", "the planet, outside of the base")
+    marsSurface.adjLocations = [lander, baseEntrance]
+    
     lander = location("lander", "your space ship (no fuel)")
     lander.interactables = [interactable("wrench")]
-    mars.adjLocations = [lander]
-    you.currentLocation = mars
+    lander.adjLocations = [marsSurface]
+
+    baseEntrance = location("martian base", "the main chamber of the martian base")
+    baseEntrance.adjLocations = [marsSurface]
+    
+    baseHangar = location("base hangar", "the largest room in the base, there are some tools and a broken rover")
+    baseHangar.adjLocations = [baseEntrance, lander]
+    
+    you = player
+    you.currentLocation = marsSurface
+    
     return you
 
 
