@@ -110,7 +110,7 @@ class Interactable:
         alias = self.actionAliases.get(command)
         if (alias):
             command = alias
-        return self.actions[command]
+        return self.actions.get(command)
 
     def newInteraction(self, name, func, aliases = []):
         self.actions[name] = func
