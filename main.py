@@ -1,22 +1,54 @@
-class location:
-    def __init__(self, name, desc):
+class Location:
+    def __init__(self, name, desc, aliases = []):
         self.name = name
         self.description = desc
+        self.aliases = aliases
 
     def showPlayer(self):
         print(self.name + " " + self.description)
         if len(self.interactables) != 0:
             print("Objects nearby:")
             for item in self.interactables:
-                print("    " + item.name)
+                print("    - " + item.name)
+        if (len(self.adjLocations) > 0):
+            print("Nearby locations: ")
+            for loc in self.adjLocations:
+                print(f"    - {loc.name}")
+
+    def isName(self, name: str) -> bool:
+        return name == self.name or name in self.aliases
+
+    def getAdjLocation(self, other):
+        if(type(other) == str):
+            searchVal = other
+        elif (type(other) == Location):
+            searchVal = other.name
+        else:
+            raise ValueError("getLocation must be given a Location or string")
+
+        for loc in self.adjLocations:
+            if loc.name == searchVal:
+                return loc
+        return None
+
+    def isConnected(self, other):
+        if (type(other) == str):
+            searchVal = other
+        elif (type(other) == Location):
+            searchVal = other.name
+        else:
+            raise ValueError("isConnected must be given a Location or string")
+
+        return searchVal in list(map(lambda loc: loc.name, self.adjLocations))
 
     name = ""
     description = ""
     adjLocations = []
+    aliases = []
     interactables = []
 
 
-class interactable:
+class Interactable:
     def __init__(self, name):
         self.name = name
 
@@ -26,24 +58,40 @@ class interactable:
     actionAliases = {}
 
 
-class item:
+class Item:
     name = "item"
 
 
 class player:
-    currentLocation: location = location("null", "")
+    currentLocation: Location = Location("null", "")
     alive: bool = True
 
 
 
 def buildWorld():
 
-    marsSurface = location("mars", "the planet, outside of the base")
-    lander = location("lander", "your space ship (no fuel)")
-    baseEntrance = location("martian base", "the main chamber of the martian base")
-    baseHangar = location("base hangar", "the largest room in the base, there are some tools and a broken rover")
+    marsSurface = Location(
+        "The surface",
+        "the planet, outside of the base",
+        ["mars", "surface", "outside"]
+    )
+    lander = Location(
+        "Your lander",
+        "your space ship (no fuel)",
+        ["ship", "lander"]
+    )
+    baseEntrance = Location(
+        "The Martian base",
+        "the main chamber of the martian base",
+        ["base", "mars base"]
+    )
+    baseHangar = Location(
+        "The hangar",
+        "the largest room in the base, there are some tools and a broken rover",
+        ["hangar", "mars base hangar"]
+    )
 
-    lander.interactables = [interactable("wrench")]
+    lander.interactables = [Interactable("wrench")]
 
     marsSurface.adjLocations = [
         lander,
@@ -72,6 +120,7 @@ def main():
     actionAliases = {"goto": "go"}
     you = buildWorld()
     print("You are on", you.currentLocation.name)
+    prevLoc = None
     while you.alive:
         you.currentLocation.showPlayer()
 
@@ -85,12 +134,23 @@ def main():
             verb = lookedUpAction
 
         if verb.lower() == "go":
-            for l in you.currentLocation.adjLocations:
-                if l.name.lower() == target:
-                    you.currentLocation = l
+            foundLoc = False
+            if target.lower() == "back" and prevLoc:
+                if (you.currentLocation.isConnected(prevLoc)):
+                    foundLoc = True
+                    you.currentLocation, prevLoc = prevLoc, you.currentLocation
+
+            for loc in you.currentLocation.adjLocations:
+                if loc.isName(target):
+                    foundLoc = True
+                    prevLoc = you.currentLocation
+                    you.currentLocation = loc
                     break
+
+            if not foundLoc:
+                print(f"\"{target}\" is not a valid location.")
         else:
-            print("Invalid action")
+            print(f"\"{verb}\" is not a valid action.")
             # print actions
 
 
