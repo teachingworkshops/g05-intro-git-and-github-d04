@@ -39,17 +39,28 @@ class player:
 def buildWorld():
 
     marsSurface = location("mars", "the planet, outside of the base")
-    marsSurface.adjLocations = [lander, baseEntrance]
-    
     lander = location("lander", "your space ship (no fuel)")
-    lander.interactables = [interactable("wrench")]
-    lander.adjLocations = [marsSurface]
-
     baseEntrance = location("martian base", "the main chamber of the martian base")
-    baseEntrance.adjLocations = [marsSurface]
-    
     baseHangar = location("base hangar", "the largest room in the base, there are some tools and a broken rover")
-    baseHangar.adjLocations = [baseEntrance, lander]
+
+    lander.interactables = [interactable("wrench")]
+
+    marsSurface.adjLocations = [
+        lander,
+        baseEntrance,
+        baseHangar
+    ]
+    lander.adjLocations = [
+        marsSurface
+    ]
+    baseEntrance.adjLocations = [
+        marsSurface,
+        baseHangar
+    ]
+    baseHangar.adjLocations = [
+        baseEntrance,
+        marsSurface
+    ]
     
     you = player
     you.currentLocation = marsSurface
