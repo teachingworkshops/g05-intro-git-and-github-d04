@@ -1,4 +1,5 @@
 import json
+import re
 from colorOutput import *
 from colorOutput import prLightPurple
 
@@ -225,10 +226,12 @@ def main():
                 prRed(f'"{target}" is not a valid location.')
             else:
                 you.currentLocation.showPlayer()
-        # use command should be of the form "use <item> on <interactable"
-        elif verb.lower() == "use" and userWords[2].lower() == "on":
-            itemName = userWords[1].lower()
-            interactableName = userWords[]
+            # use command should be of the form "use <item> on <interactable"
+            """
+            elif re.match(r'use ['userText:
+                itemName = userWords[1].lower()
+                interactableName = userWords[]
+            """
         elif verb.lower() == "inventory":
             if len(you.inventory) > 0:
                 prYellow("You have the following items in your inventory:")
