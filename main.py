@@ -222,6 +222,10 @@ def main():
                 print(f'"{target}" is not a valid location.')
             else:
                 you.currentLocation.showPlayer()
+        # use command should be of the form "use <item> on <interactable"
+        elif verb.lower() == "use" and userWords[2].lower() == "on":
+            itemName = userWords[1].lower()
+            interactableName = userWords[]
         elif verb.lower() == "inventory":
             if len(you.inventory) > 0:
                 print("You have the following items in your inventory:")

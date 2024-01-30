@@ -1,0 +1,1 @@
+def controlPanelInteraction(panel, player):
