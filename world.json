@@ -46,5 +46,11 @@
       "hidden": false,
       "gettable": false
     }
+  },
+  "items": {
+    "capacitor": {
+      "aliases": [],
+      "description": "it's a electrical doodad"
+    }
   }
 }
