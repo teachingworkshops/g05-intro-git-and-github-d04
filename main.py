@@ -1,5 +1,6 @@
 import json
 from colorOutput import *
+from colorOutput import prLightPurple
 
 
 class Location:
@@ -14,14 +15,14 @@ class Location:
     def showPlayer(self):
         prPurple(self.name + " " + self.description)
         if len(self.interactables) != 0:
-            print("Objects nearby:")
+            prCyan("Objects nearby:")
             for inter in self.interactables:
                 if not inter.hidden:
-                    print("    - " + inter.name)
+                    prCyan("    - " + inter.name)
         if len(self.adjLocations) > 0:
-            print("Nearby locations: ")
+            prLightPurple("Nearby locations: ")
             for loc in self.adjLocations:
-                print(f"    - {loc.name}")
+                prLightPurple(f"    - {loc.name}")
 
     def isName(self, name: str) -> bool:
         return name == self.name or name in self.aliases
@@ -119,11 +120,11 @@ class Interactable:
 
     @staticmethod
     def onUse(interactable, player):
-        print("This object cannot be used.")
+        prRed("This object cannot be used.")
 
     @staticmethod
     def onExamine(interactable, player):
-        print(interactable.desc)
+        prYellow(interactable.desc)
 
     @staticmethod
     def onGet(interactable, player, item=None):
@@ -131,13 +132,13 @@ class Interactable:
             if item == None:
                 item = Item(interactable)
 
-            print(f"You pick up {item.name}.")
+            prGreen(f"You picked up the {item.name}.")
 
             player.inventory.append(item)
             interactable.hidden = True
 
         else:
-            print("You cannot pick up this object.")
+            prRed("You cannot pick up this object.")
 
 
 def buildWorld():
