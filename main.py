@@ -1,6 +1,5 @@
 import json
 
-
 class Location:
     def __init__(self, name, desc, aliases=[]):
         self.name = name
