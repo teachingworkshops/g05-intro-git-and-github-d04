@@ -19,10 +19,22 @@
       "interactables": ["rover"]
     },
     "base hanger": {
-      "aliases": ["garage"],
+      "aliases": ["garage", "hangar"],
       "description": "it's safe, for now...",
       "nearbyLocations": ["mars", "base"],
       "interactables": ["rover"]
+    },
+    "antenna base": {
+      "aliases": ["antenna"],
+      "description": "the base of the communications tower",
+      "nearbyLocations": ["mars", "ladder"],
+      "interactables": []
+    },
+    "ladder":{
+      "aliases": ["antenna top", "top", "up"],
+      "description": "the top of the communications tower",
+      "nearbyLocations": ["antenna base"],
+      "interactables": ["transmitter"]
     }
   },
   "interactables": {
@@ -43,6 +55,13 @@
       "aliases": [],
       "description": "it controls things",
       "working": true,
+      "hidden": false,
+      "gettable": false
+    },
+    "transmitter": {
+      "aliases": [],
+      "description": "a crucial part of the antenna",
+      "working": false,
       "hidden": false,
       "gettable": false
     }
