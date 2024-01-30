@@ -1,7 +1,6 @@
 import json
 import re
 from colorOutput import *
-from colorOutput import prLightPurple
 
 
 class Location:
@@ -21,9 +20,9 @@ class Location:
                 if not inter.hidden:
                     prCyan("    - " + inter.name)
         if len(self.adjLocations) > 0:
-            prLightPurple("Nearby locations: ")
+            prBlue("Nearby locations: ")
             for loc in self.adjLocations:
-                prLightPurple(f"    - {loc.name}")
+                prBlue(f"    - {loc.name}")
 
     def isName(self, name: str) -> bool:
         return name == self.name or name in self.aliases

@@ -1,31 +1,34 @@
 # from https://stackoverflow.com/questions/287871/how-do-i-print-colored-text-to-the-terminal
+from colorama import Fore, Style
+
+
 def prRed(prt):
-    print("\033[91m{}\033[00m".format(prt))
+    print(Fore.RED + f"{prt}" + Style.RESET_ALL)
 
 
 def prGreen(prt):
-    print("\033[92m{}\033[00m".format(prt))
+    print(Fore.GREEN + f"{prt}" + Style.RESET_ALL)
 
 
 def prYellow(prt):
-    print("\033[93m{}\033[00m".format(prt))
+    print(Fore.YELLOW + f"{prt}" + Style.RESET_ALL)
 
 
-def prLightPurple(prt):
-    print("\033[94m{}\033[00m".format(prt))
+def prBlue(prt):
+    print(Fore.BLUE + f"{prt}" + Style.RESET_ALL)
 
 
 def prPurple(prt):
-    print("\033[95m{}\033[00m".format(prt))
+    print(Fore.MAGENTA + f"{prt}" + Style.RESET_ALL)
 
 
 def prCyan(prt):
-    print("\033[96m{}\033[00m".format(prt))
+    print(Fore.CYAN + f"{prt}" + Style.RESET_ALL)
 
 
 def prLightGray(prt):
-    print("\033[97m{}\033[00m".format(prt))
+    print(Fore.LIGHTWHITE_EX + f"{prt}" + Style.RESET_ALL)
 
 
 def prBlack(prt):
-    print("\033[98m{}\033[00m".format(prt))
+    print(Fore.BLACK + f"{prt}" + Style.RESET_ALL)
