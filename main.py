@@ -151,20 +151,14 @@ def buildWorld():
         locations[key].aliases = aliases
 
     for key in locations.keys():
+        nearbyLocs = []
         for i in range(len(locations[key].nearbyLocations)):
-            locations[key].nearbyLocations[i] = locations[
-                locations[key].nearbyLocations[i]
-            ]
-            print(key + ",", locations[key].nearbyLocations[i].name)
-            print(locations[key].nearbyLocations[i])
+            nearbyLocs.append(locations[locations[key].nearbyLocations[i]])
+        locations[key].adjLocations = nearbyLocs
 
     # convert adj-locations into real references
     you = Player
-    you.currentLocation = locations["lander"]
-
-    print(len(you.currentLocation.adjLocations))
-    for p in you.currentLocation.adjLocations:
-        print(p, "adj")
+    you.currentLocation = locations["mars"]
 
     return you
 
