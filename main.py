@@ -146,10 +146,23 @@ def buildWorld():
     for key in locations.keys():
         adj = locations[key]["nearbyLocations"]
         aliases = locations[key]["aliases"]
+        interactables = locations[key]["interactables"]
         locations[key] = Location(key, locations[key]["description"])
         locations[key].nearbyLocations = adj
         locations[key].aliases = aliases
+        for i in interactables:
+            interactable = data["interactables"][i]
+            locations[key].interactables.append(
+                Interactable(
+                    i,
+                    interactable["description"],
+                    interactable["aliases"],
+                    interactable["hidden"],
+                    interactable["gettable"],
+                )
+            )
 
+    # reconstruct adj-locaations
     for key in locations.keys():
         nearbyLocs = []
         for i in range(len(locations[key].nearbyLocations)):

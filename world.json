@@ -27,13 +27,24 @@
   },
   "interactables": {
     "wrench": {
+      "aliases": [],
       "description": "it's metal and can hit things",
-      "visible": false
+      "hidden": false,
+      "gettable": true
     },
     "rover": {
+      "aliases": [],
       "description": "it's fast but it's broken right now",
       "working": false,
-      "visible": false
+      "hidden": false,
+      "gettable": false
+    },
+    "control panel": {
+      "aliases": [],
+      "description": "it controls things",
+      "working": true,
+      "hidden": false,
+      "gettable": false
     }
   }
 }
