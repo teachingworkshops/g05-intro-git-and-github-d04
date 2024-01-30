@@ -1,4 +1,6 @@
 import json
+from colorOutput import *
+
 
 class Location:
     def __init__(self, name, desc, aliases=[]):
@@ -10,7 +12,7 @@ class Location:
         self.interactables = []
 
     def showPlayer(self):
-        print(self.name + " " + self.description)
+        prPurple(self.name + " " + self.description)
         if len(self.interactables) != 0:
             print("Objects nearby:")
             for inter in self.interactables:
@@ -190,7 +192,7 @@ def main():
     helpActionList = ["g(o)/enter", "i(nventory)/items", "get/grab/pickup"]
 
     you = buildWorld()
-    print("You are on", you.currentLocation.name)
+    prPurple("You are on " + you.currentLocation.name)
     prevLoc = None
     you.currentLocation.showPlayer()
     while you.alive:
@@ -219,31 +221,31 @@ def main():
                     break
 
             if not foundLoc:
-                print(f'"{target}" is not a valid location.')
+                prRed(f'"{target}" is not a valid location.')
             else:
                 you.currentLocation.showPlayer()
         elif verb.lower() == "inventory":
             if len(you.inventory) > 0:
-                print("You have the following items in your inventory:")
+                prYellow("You have the following items in your inventory:")
                 for item in you.inventory:
-                    print(f"   - {item.name}")
+                    prYellow(f"   - {item.name}")
             else:
-                print("You have no items in your inventory.")
+                prRed("You have no items in your inventory.")
         elif verb.lower() == "help":
             for action in helpActionList:
-                print(action)
+                prGreen(action)
         else:
             if target.lower().strip() == "":
-                print("unknown command... try: h or help")
+                prRed("unknown command... try: h or help")
                 # print(f'What would you like to "{verb.lower()}"?')
             else:
                 tInter = you.currentLocation.getInteractable(target.lower())
 
                 if tInter:
                     if not tInter.doInteraction(you, verb.lower()):
-                        print(f'"{verb}" is not a valid action.')
+                        prRed(f'"{verb}" is not a valid action.')
                 else:
-                    print(f'"{target}" is not a valid object.')
+                    prRed(f'"{target}" is not a valid object.')
 
 
 if __name__ == "__main__":
