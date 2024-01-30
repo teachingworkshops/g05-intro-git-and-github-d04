@@ -4,7 +4,8 @@
       "description": "hot",
       "nearbyLocations": {
         "lander",
-        "base"
+        "base",
+        "base hanger"
       },
       "interactables": {}
     },
@@ -14,19 +15,29 @@
         "mars"
       },
       "interactables": {
-        "wrench"
+        "wrench",
+        "control panel"
       }
     },
-    "base": {
+    "base hanger": {
       "description": "it's safe, for now...",
       "nearbyLocations": {
-        "mars"
+        "mars",
+        "base"
+      },
+      "interactables": {
+        "rover"
       }
     }
   },
   "interactables": {
     "wrench": {
       "description": "it's metal and can hit things",
+      "visible": false
+    },
+    "rover": {
+      "description": "it's fast but it's broken right now",
+      "working": false,
       "visible": false
     }
   }
