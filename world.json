@@ -4,37 +4,43 @@
       "aliases": ["planet", "outside"],
       "description": "hot",
       "nearbyLocations": ["lander", "base", "base hanger"],
-      "interactables": []
+      "interactables": [],
+      "longdescription": "Outside the safety of the base, you find yourself standing in the midst of Mars' barren surface. The ground beneath your feet is a mixture of red regolith and rocky outcrops. The distant horizon is marked by the curvature of the planet, and the thin atmosphere lends an otherworldly quality to the landscape. The only sounds are your own breath and the gentle crunch of Martian soil underfoot."
     },
     "lander": {
       "aliases": ["ship"],
       "description": "it's fast",
       "nearbyLocations": ["mars"],
-      "interactables": ["wrench", "control panel"]
+      "interactables": ["wrench", "control panel"],
+      "longdescription": "The lander, once a proud symbol of arrival, now rests battered and broken on the Martian soil. Its hull, scarred by a rough descent, reveals the harshness of the Martian atmosphere. Nearby, a wrench protrudes from the red regolith, a potential tool for repairs. A flickering control panel, despite its damaged state, beckons for interaction, promising insights into the lander's malfunction."
     },
     "base": {
       "aliases": ["home"],
       "description": "it's safe, for now...",
       "nearbyLocations": ["mars", "base hanger"],
-      "interactables": ["rover"]
+      "interactables": ["rover"],
+      "longdescription": "Nestled within the desolate Martian terrain, the base stands as a solitary outpost, its metallic structures contrasting sharply with the rust-colored landscape. The hum of machinery echoes through the corridors as you navigate the hub of survival on this alien planet. Essential equipment lines the walls, and the air carries a constant reminder of the isolation that comes with being stranded on Mars."
     },
     "base hanger": {
       "aliases": ["garage", "hangar"],
       "description": "it's safe, for now...",
       "nearbyLocations": ["mars", "base"],
-      "interactables": ["rover"]
+      "interactables": ["rover"],
+      "longdescription": "Within the base's hangar, a Martian rover stands as a symbol of exploration and escape. The hangar is currently sealed, and the airlock control panel blinks a red light, signifying closure. The rover, sturdy and equipped for the Martian terrain, awaits a daring expedition. To open the hangar and ensure your safe return, you'll need to engage with the control panel, initiating the sequence to unseal the massive doors. As you prepare for the challenges ahead, the hum of machinery echoes, emphasizing the potential of this lifeline to both survival and escape."
     },
     "antenna base": {
       "aliases": ["antenna"],
       "description": "the base of the communications tower",
       "nearbyLocations": ["mars", "ladder"],
-      "interactables": []
+      "interactables": [],
+      "longdescription": "As you approach the separate base, a more expansive facility comes into view, crowned by a communications tower reaching for the Martian sky. The structures are interconnected, creating a larger complex with a sense of purpose. The tower stands tall, antennas reaching out into the vastness of space, a beacon of hope for communication in this isolated world."
     },
     "ladder":{
       "aliases": ["antenna top", "top", "up"],
       "description": "the top of the communications tower",
       "nearbyLocations": ["antenna base"],
-      "interactables": ["transmitter"]
+      "interactables": ["transmitter"],
+      "longdescription": "Climbing to the summit of the communications tower, you find yourself atop a metal platform with a panoramic view of the Martian landscape. The rhythmic blinking of communication equipment surrounds you, and the thin atmosphere makes the stars above seem unusually vivid. From this vantage point, you can see the entirety of the base, the distant landers, and the vast expanse of the Martian surface, emphasizing the isolation that defines your journey."
     }
   },
   "interactables": {
