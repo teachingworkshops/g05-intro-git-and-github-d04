@@ -1,4 +1,7 @@
 import json
+from colorOutput import *
+from colorOutput import prLightPurple
+
 
 class Location:
     def __init__(self, name, desc, aliases=[]):
@@ -10,16 +13,16 @@ class Location:
         self.interactables = []
 
     def showPlayer(self):
-        print(self.name + " " + self.description)
+        prPurple(self.name + " " + self.description)
         if len(self.interactables) != 0:
-            print("Objects nearby:")
+            prCyan("Objects nearby:")
             for inter in self.interactables:
                 if not inter.hidden:
-                    print("    - " + inter.name)
+                    prCyan("    - " + inter.name)
         if len(self.adjLocations) > 0:
-            print("Nearby locations: ")
+            prLightPurple("Nearby locations: ")
             for loc in self.adjLocations:
-                print(f"    - {loc.name}")
+                prLightPurple(f"    - {loc.name}")
 
     def isName(self, name: str) -> bool:
         return name == self.name or name in self.aliases
@@ -117,11 +120,11 @@ class Interactable:
 
     @staticmethod
     def onUse(interactable, player):
-        print("This object cannot be used.")
+        prRed("This object cannot be used.")
 
     @staticmethod
     def onExamine(interactable, player):
-        print(interactable.desc)
+        prYellow(interactable.desc)
 
     @staticmethod
     def onGet(interactable, player, item=None):
@@ -129,13 +132,13 @@ class Interactable:
             if item == None:
                 item = Item(interactable)
 
-            print(f"You pick up {item.name}.")
+            prGreen(f"You picked up the {item.name}.")
 
             player.inventory.append(item)
             interactable.hidden = True
 
         else:
-            print("You cannot pick up this object.")
+            prRed("You cannot pick up this object.")
 
 
 def buildWorld():
@@ -190,7 +193,7 @@ def main():
     helpActionList = ["g(o)/enter", "i(nventory)/items", "get/grab/pickup"]
 
     you = buildWorld()
-    print("You are on", you.currentLocation.name)
+    prPurple("You are on " + you.currentLocation.name)
     prevLoc = None
     you.currentLocation.showPlayer()
     while you.alive:
@@ -219,7 +222,7 @@ def main():
                     break
 
             if not foundLoc:
-                print(f'"{target}" is not a valid location.')
+                prRed(f'"{target}" is not a valid location.')
             else:
                 you.currentLocation.showPlayer()
         # use command should be of the form "use <item> on <interactable"
@@ -228,26 +231,26 @@ def main():
             interactableName = userWords[]
         elif verb.lower() == "inventory":
             if len(you.inventory) > 0:
-                print("You have the following items in your inventory:")
+                prYellow("You have the following items in your inventory:")
                 for item in you.inventory:
-                    print(f"   - {item.name}")
+                    prYellow(f"   - {item.name}")
             else:
-                print("You have no items in your inventory.")
+                prRed("You have no items in your inventory.")
         elif verb.lower() == "help":
             for action in helpActionList:
-                print(action)
+                prGreen(action)
         else:
             if target.lower().strip() == "":
-                print("unknown command... try: h or help")
+                prRed("unknown command... try: h or help")
                 # print(f'What would you like to "{verb.lower()}"?')
             else:
                 tInter = you.currentLocation.getInteractable(target.lower())
 
                 if tInter:
                     if not tInter.doInteraction(you, verb.lower()):
-                        print(f'"{verb}" is not a valid action.')
+                        prRed(f'"{verb}" is not a valid action.')
                 else:
-                    print(f'"{target}" is not a valid object.')
+                    prRed(f'"{target}" is not a valid object.')
 
 
 if __name__ == "__main__":
