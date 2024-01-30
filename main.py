@@ -1,3 +1,6 @@
+import json
+
+
 class Location:
     def __init__(self, name, desc, aliases=[]):
         self.name = name
@@ -137,50 +140,31 @@ class Interactable:
 
 
 def buildWorld():
-    marsSurface = Location(
-        "The surface",
-        "the planet, outside of the base",
-        ["mars", "surface", "outside", "the surface"],
-    )
-    lander = Location("Your lander", "your space ship (no fuel)", ["ship", "lander"])
-    baseEntrance = Location(
-        "The Martian base",
-        "the main chamber of the martian base",
-        ["base", "mars base"],
-    )
-    baseHangar = Location(
-        "The hangar",
-        "the largest room in the base, there are some tools and a broken rover",
-        ["hangar", "mars base hangar"],
-    )
+    data = json.load(open("world.json"))
+    locations = data["locations"]
+    # convert top-level values to locations
+    for key in locations.keys():
+        adj = locations[key]["nearbyLocations"]
+        aliases = locations[key]["aliases"]
+        locations[key] = Location(key, locations[key]["description"])
+        locations[key].nearbyLocations = adj
+        locations[key].aliases = aliases
 
-    lander.interactables = [
-        Interactable(
-            "A wrench",
-            "A hefty steel wrench for removing bolts.",
-            ["wrench", "spanner"],
-            gettable=True,
-        ),
-    ]
+    for key in locations.keys():
+        for i in range(len(locations[key].nearbyLocations)):
+            locations[key].nearbyLocations[i] = locations[
+                locations[key].nearbyLocations[i]
+            ]
+            print(key + ",", locations[key].nearbyLocations[i].name)
+            print(locations[key].nearbyLocations[i])
 
-    control_panel = Interactable(
-        "A control panel",
-        "An panel covered in switches, dials, and lights.",
-        ["control panel", "panel"],
-    )
-    control_panel.actions["use"] = lambda interactable, player: print(
-        "You try flipping a few switches, but nothing happens."
-    )
-
-    lander.interactables.append(control_panel)
-
-    marsSurface.adjLocations = [lander, baseEntrance, baseHangar]
-    lander.adjLocations = [marsSurface]
-    baseEntrance.adjLocations = [marsSurface, baseHangar]
-    baseHangar.adjLocations = [baseEntrance, marsSurface]
-
+    # convert adj-locations into real references
     you = Player
-    you.currentLocation = marsSurface
+    you.currentLocation = locations["lander"]
+
+    print(len(you.currentLocation.adjLocations))
+    for p in you.currentLocation.adjLocations:
+        print(p, "adj")
 
     return you
 

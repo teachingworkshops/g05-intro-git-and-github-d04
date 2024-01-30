@@ -1,33 +1,28 @@
 {
   "locations": {
     "mars": {
+      "aliases": ["planet", "outside"],
       "description": "hot",
-      "nearbyLocations": {
-        "lander",
-        "base",
-        "base hanger"
-      },
-      "interactables": {}
+      "nearbyLocations": ["lander", "base", "base hanger"],
+      "interactables": []
     },
     "lander": {
+      "aliases": ["ship"],
       "description": "it's fast",
-      "nearbyLocations": {
-        "mars"
-      },
-      "interactables": {
-        "wrench",
-        "control panel"
-      }
+      "nearbyLocations": ["mars"],
+      "interactables": ["wrench", "control panel"]
+    },
+    "base": {
+      "aliases": ["home"],
+      "description": "it's safe, for now...",
+      "nearbyLocations": ["mars", "base hanger"],
+      "interactables": ["rover"]
     },
     "base hanger": {
+      "aliases": ["garage"],
       "description": "it's safe, for now...",
-      "nearbyLocations": {
-        "mars",
-        "base"
-      },
-      "interactables": {
-        "rover"
-      }
+      "nearbyLocations": ["mars", "base"],
+      "interactables": ["rover"]
     }
   },
   "interactables": {
