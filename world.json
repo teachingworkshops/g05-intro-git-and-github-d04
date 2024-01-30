@@ -1,0 +1,33 @@
+{
+  "locations": {
+    "mars": {
+      "description": "hot",
+      "nearbyLocations": {
+        "lander",
+        "base"
+      },
+      "interactables": {}
+    },
+    "lander": {
+      "description": "it's fast",
+      "nearbyLocations": {
+        "mars"
+      },
+      "interactables": {
+        "wrench"
+      }
+    },
+    "base": {
+      "description": "it's safe, for now...",
+      "nearbyLocations": {
+        "mars"
+      }
+    }
+  },
+  "interactables": {
+    "wrench": {
+      "description": "it's metal and can hit things",
+      "visible": false
+    }
+  }
+}
