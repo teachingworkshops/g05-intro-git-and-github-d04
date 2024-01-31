@@ -1,6 +1,9 @@
 import json
 from colorOutput import *
 
+def print_ascii(fn):
+    f= open(fn,'r')
+    prRed(''.join([line for line in f]))
 
 class Location:
     def __init__(self, name, desc, aliases=[]):
@@ -10,9 +13,13 @@ class Location:
 
         self.adjLocations = []
         self.interactables = []
-
+    
     def showPlayer(self):
         prPurple(self.name + " " + self.description)
+        
+        ascii_file = f"{self.name.lower().replace(' ', '')}.txt"
+        print_ascii(ascii_file)
+        
         if len(self.interactables) != 0:
             prCyan("Objects nearby:")
             for inter in self.interactables:
@@ -58,9 +65,8 @@ class Location:
 
         return searchVal in list(map(lambda loc: loc.name, self.adjLocations))
 
-
 class Player:
-    currentLocation: Location = Location("null", "")
+    currentLocation: Location = Location("mars", "your initial landing site on the martian surface.")
     alive: bool = True
     inventory = []
 
@@ -176,10 +182,6 @@ def buildWorld():
 
     return you
 
-def print_ascii(fn):
-    f= open(fn,'r')
-    print(''.join([line for line in f]))
-
 def main():
     actionAliases = {
         "goto": "go",
@@ -221,7 +223,6 @@ def main():
                     foundLoc = True
                     prevLoc = you.currentLocation
                     you.currentLocation = loc
-                    print_ascii('antennabase.txt')
                     break
 
             if not foundLoc:
