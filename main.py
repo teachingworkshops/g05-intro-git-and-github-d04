@@ -248,7 +248,7 @@ def main():
         "h": "help",
         "l": "look",
     }
-    helpActionList = ["g(o)/enter", "i(nventory)/items", "get/grab/pickup"]
+    helpActionList = ["g(o)/enter", "i(nventory)/items", "get/grab/pickup", "l(ook)"]
 
     you = buildWorld()
     prPurple("You are on " + you.currentLocation.name)
