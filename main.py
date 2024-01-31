@@ -206,6 +206,9 @@ def buildWorld():
 
     return you
 
+def print_ascii(fn):
+    f= open(fn,'r')
+    print(''.join([line for line in f]))
 
 def main():
     actionAliases = {
@@ -251,6 +254,7 @@ def main():
                     foundLoc = True
                     prevLoc = you.currentLocation
                     you.currentLocation = loc
+                    print_ascii('antennabase.txt')
                     break
 
             if not foundLoc:
