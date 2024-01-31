@@ -5,42 +5,48 @@
       "description": "standing alone on the martian surface, surrounded by the solitude of the red landscape.",
       "nearbyLocations": ["lander", "base", "base hanger"],
       "interactables": [],
-      "longdescription": "outside the safety of the base, you find yourself standing in the midst of mars' barren surface. the ground beneath your feet is a mixture of red regolith and rocky outcrops. the distant horizon is marked by the curvature of the planet, and the thin atmosphere lends an otherworldly quality to the landscape. the only sounds are your own breath and the gentle crunch of martian soil underfoot."
+      "longdescription": "outside the safety of the base, you find yourself standing in the midst of mars' barren surface. the ground beneath your feet is a mixture of red regolith and rocky outcrops. the distant horizon is marked by the curvature of the planet, and the thin atmosphere lends an otherworldly quality to the landscape. the only sounds are your own breath and the gentle crunch of martian soil underfoot.",
+      "asciiart": ""
     },
     "lander": {
       "aliases": ["ship"],
       "description": "a broken lander lies on the martian surface, potential salvation hidden in its wreckage.",
       "nearbyLocations": ["mars"],
       "interactables": ["wrench", "control panel"],
-      "longdescription": "the lander, once a proud symbol of arrival, now rests battered and broken on the martian soil. its hull, scarred by a rough descent, reveals the harshness of the martian atmosphere. nearby, a wrench protrudes from the red regolith, a potential tool for repairs. a flickering control panel, despite its damaged state, beckons for interaction, promising insights into the lander's malfunction."
+      "longdescription": "the lander, once a proud symbol of arrival, now rests battered and broken on the martian soil. its hull, scarred by a rough descent, reveals the harshness of the martian atmosphere. nearby, a wrench protrudes from the red regolith, a potential tool for repairs. a flickering control panel, despite its damaged state, beckons for interaction, promising insights into the lander's malfunction.",
+      "asciiart": ""
     },
     "base": {
       "aliases": ["home"],
       "description": "the martian base, a metallic haven amidst the red expanse.",
       "nearbyLocations": ["mars", "base hanger"],
       "interactables": ["rover"],
-      "longdescription": "nestled within the desolate martian terrain, the base stands as a solitary outpost, its metallic structures contrasting sharply with the rust-colored landscape. the hum of machinery echoes through the corridors as you navigate the hub of survival on this alien planet. essential equipment lines the walls, and the air carries a constant reminder of the isolation that comes with being stranded on mars."
+      "longdescription": "nestled within the desolate martian terrain, the base stands as a solitary outpost, its metallic structures contrasting sharply with the rust-colored landscape. the hum of machinery echoes through the corridors as you navigate the hub of survival on this alien planet. essential equipment lines the walls, and the air carries a constant reminder of the isolation that comes with being stranded on mars.",
+      "asciiart": ""
     },
     "base hanger": {
       "aliases": ["garage", "hangar"],
       "description": "a cluttered garage within the base, home to a rugged martian rover.",
       "nearbyLocations": ["mars", "base"],
       "interactables": ["rover"],
-      "longdescription": "within the base's hangar, a martian rover stands as a symbol of exploration and escape. the hangar is currently sealed, and the airlock control panel blinks a red light, signifying closure. the rover, sturdy and equipped for the martian terrain, awaits a daring expedition. to open the hangar and ensure your safe return, you'll need to engage with the control panel, initiating the sequence to unseal the massive doors. as you prepare for the challenges ahead, the hum of machinery echoes, emphasizing the potential of this lifeline to both survival and escape."
+      "longdescription": "within the base's hangar, a martian rover stands as a symbol of exploration and escape. the hangar is currently sealed, and the airlock control panel blinks a red light, signifying closure. the rover, sturdy and equipped for the martian terrain, awaits a daring expedition. to open the hangar and ensure your safe return, you'll need to engage with the control panel, initiating the sequence to unseal the massive doors. as you prepare for the challenges ahead, the hum of machinery echoes, emphasizing the potential of this lifeline to both survival and escape.",
+      "asciiart": ""
     },
     "antenna base": {
       "aliases": ["antenna"],
       "description": "approaching a distant base with a towering communications structure.",
       "nearbyLocations": ["mars", "ladder"],
       "interactables": [],
-      "longdescription": "approaching a modest base focused solely on communications, a simple yet purposeful structure stands interconnected with the martian soil. the tower stands tall, antennas reaching out into the vastness of space, a beacon of hope for communication in this isolated world."
+      "longdescription": "approaching a modest base focused solely on communications, a simple yet purposeful structure stands interconnected with the martian soil. the tower stands tall, antennas reaching out into the vastness of space, a beacon of hope for communication in this isolated world.",
+      "asciiart": ""
     },
     "ladder":{
       "aliases": ["antenna top", "top", "up"],
       "description": "atop the communication tower, a commanding view of the martian world unfolds.",
       "nearbyLocations": ["antenna base"],
       "interactables": ["transmitter"],
-      "longdescription": "climbing to the summit of the communications tower, you find yourself atop a metal platform with a panoramic view of the martian landscape. the rhythmic blinking of communication equipment surrounds you, and the thin atmosphere makes the stars above seem unusually vivid. from this vantage point, you can see the entirety of the base, the distant landers, and the vast expanse of the martian surface, emphasizing the isolation that defines your journey."
+      "longdescription": "climbing to the summit of the communications tower, you find yourself atop a metal platform with a panoramic view of the martian landscape. the rhythmic blinking of communication equipment surrounds you, and the thin atmosphere makes the stars above seem unusually vivid. from this vantage point, you can see the entirety of the base, the distant landers, and the vast expanse of the martian surface, emphasizing the isolation that defines your journey.",
+      "asciiart": ""
     }
   },
   "interactables": {
