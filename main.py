@@ -2,12 +2,19 @@ import json
 import re
 from colorOutput import *
 import interactions
+import os
+
+# clear term
+os.system("cls||clear")
+
+
 def print_ascii(fn):
-    f= open(fn,'r')
-    prRed(''.join([line for line in f]))
+    f = open(fn, "r")
+    prRed("".join([line for line in f]))
+
 
 class Location:
-    def __init__(self, name, desc, aliases=[], hidden = False):
+    def __init__(self, name, desc, aliases=[], hidden=False):
         self.name = name
         self.description = desc
         self.aliases = aliases
@@ -15,13 +22,13 @@ class Location:
 
         self.adjLocations = []
         self.interactables = []
-    
+
     def showPlayer(self):
         prPurple(self.name + " " + self.description)
-        
+
         ascii_file = f"{self.name.lower().replace(' ', '')}.txt"
         print_ascii(ascii_file)
-        
+
         if len(self.interactables) != 0:
             prCyan("Objects nearby:")
             for inter in self.interactables:
@@ -68,6 +75,7 @@ class Location:
 
         return searchVal in list(map(lambda loc: loc.name, self.adjLocations))
 
+
 class Player:
     currentLocation: Location = Location("null", "")
     alive: bool = True
@@ -78,6 +86,7 @@ class Player:
             if item.isName(itemName):
                 return item
         return None
+
 
 class Item:
     def __init__(self, name, desc, aliases=[]):
@@ -115,7 +124,7 @@ class Interactable:
     def isName(self, name: str) -> bool:
         return name == self.name or name in self.aliases
 
-    def doInteraction(self, player: Player, command: str, item = None) -> bool:
+    def doInteraction(self, player: Player, command: str, item=None) -> bool:
         inter = self.getInteraction(command)
         if inter:
             inter(self, player, item)
@@ -136,11 +145,11 @@ class Interactable:
             self.actionAliases[alias] = name
 
     @staticmethod
-    def onUse(interactable, player, item = None):
+    def onUse(interactable, player, item=None):
         prRed("This object cannot be used.")
 
     @staticmethod
-    def onExamine(interactable, player, item = None):
+    def onExamine(interactable, player, item=None):
         prYellow(interactable.desc)
 
     @staticmethod
@@ -164,10 +173,14 @@ def buildWorld():
     # convert top-level values to locations
     for key in locations.keys():
         adj = locations[key]["nearbyLocations"]
-        aliases = locations[key]["aliases"]
         interactables = locations[key]["interactables"]
-        locations[key] = Location(key, locations[key]["description"], aliases, locations[key]["hidden"])
-        locations[key].nearbyLocations = adj
+        locations[key] = Location(
+            key,
+            locations[key]["description"],
+            locations[key]["aliases"],
+            locations[key]["hidden"],
+        )
+        locations[key].adjLocations = adj
         for i in interactables:
             interactable = data["interactables"][i]
             locations[key].interactables.append(
@@ -176,39 +189,51 @@ def buildWorld():
                     interactable["description"],
                     interactable["aliases"],
                     interactable["hidden"],
-                    interactable["gettable"]
+                    interactable["gettable"],
                 )
             )
 
             if i == "control panel":
-                locations[key].interactables[-1].actions["use"] = interactions.controlPanelUse
+                locations[key].interactables[-1].actions[
+                    "use"
+                ] = interactions.controlPanelUse
             elif i == "radio":
-                locations[key].interactables[-1].actions["use"] = interactions.radioUseBeforeFixed
+                locations[key].interactables[-1].actions[
+                    "use"
+                ] = interactions.radioUseBeforeFixed
             elif i == "rover":
                 locations[key].interactables[-1].actions["use"] = interactions.roverUse
             elif i == "transmitter":
-                locations[key].interactables[-1].actions["use"] = interactions.transmitterUse
+                locations[key].interactables[-1].actions[
+                    "use"
+                ] = interactions.transmitterUse
             elif i == "hangar door":
-                locations[key].interactables[-1].actions["use"] = interactions.hangarDoorUseBeforeUnlocked
-                locations[key].interactables[-1].actions["examine"] = interactions.hangarDoorExamine
+                locations[key].interactables[-1].actions[
+                    "use"
+                ] = interactions.hangarDoorUseBeforeUnlocked
+                locations[key].interactables[-1].actions[
+                    "examine"
+                ] = interactions.hangarDoorExamine
                 locations[key].interactables[-1].actionAliases["open"] = "use"
             elif i == "keypad":
                 locations[key].interactables[-1].actions["use"] = interactions.keypadUse
             elif i == "radio tower":
-                locations[key].interactables[-1].actions["use"] = interactions.radioTowerUse
+                locations[key].interactables[-1].actions[
+                    "use"
+                ] = interactions.radioTowerUse
 
     # reconstruct adj-locaations
     for key in locations.keys():
         nearbyLocs = []
-        for i in range(len(locations[key].nearbyLocations)):
-            nearbyLocs.append(locations[locations[key].nearbyLocations[i]])
+        for i in range(len(locations[key].adjLocations)):
+            nearbyLocs.append(locations[locations[key].adjLocations[i]])
         locations[key].adjLocations = nearbyLocs
 
     # convert adj-locations into real references
     you = Player()
     you.currentLocation = locations["mars"]
-
     return you
+
 
 def main():
     actionAliases = {
@@ -221,7 +246,7 @@ def main():
         "items": "inventory",
         "i": "inventory",
         "h": "help",
-        "l": "look"
+        "l": "look",
     }
     helpActionList = ["g(o)/enter", "i(nventory)/items", "get/grab/pickup"]
 
@@ -272,7 +297,7 @@ def main():
             for action in helpActionList:
                 prGreen(action)
         else:
-            matches = re.match(r'use\s+(.+)\s+on\s+(.+)', userText)
+            matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
             if matches:
                 usedItem = you.getItem(matches[1].lower())
                 interactable = you.currentLocation.getInteractable(matches[2].lower())
