@@ -77,4 +77,4 @@ pip install -r requirements.txt
 python main.py
 
 # Dependencies
-we depend on colorama for cross-platform colored text which uses a BSD-3 Software License which can be found here: https://github.com/tartley/colorama/blob/master/LICENSE.txts
+we depend on colorama for cross-platform colored text which uses a BSD-3 Software License which can be found here: https://github.com/tartley/colorama/blob/master/LICENSE.txt
