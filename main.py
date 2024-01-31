@@ -1,13 +1,14 @@
 import json
 import re
 from colorOutput import *
-
+import interactions
 
 class Location:
-    def __init__(self, name, desc, aliases=[]):
+    def __init__(self, name, desc, aliases=[], hidden = False):
         self.name = name
         self.description = desc
         self.aliases = aliases
+        self.hidden = hidden
 
         self.adjLocations = []
         self.interactables = []
@@ -22,7 +23,8 @@ class Location:
         if len(self.adjLocations) > 0:
             prBlue("Nearby locations: ")
             for loc in self.adjLocations:
-                prBlue(f"    - {loc.name}")
+                if not loc.hidden:
+                    prBlue(f"    - {loc.name}")
 
     def isName(self, name: str) -> bool:
         return name == self.name or name in self.aliases
@@ -61,10 +63,17 @@ class Location:
 
 
 class Player:
-    currentLocation: Location = Location("null", "")
-    alive: bool = True
-    inventory = []
 
+    def __init__(self):
+        self.currentLocation: Location = Location("null", "")
+        self.alive: bool = True
+        self.inventory = []
+
+    def getItem(self, itemName):
+        for item in self.inventory:
+            if item.isName(itemName):
+                return item
+        return None
 
 class Item:
     def __init__(self, name, desc, aliases=[]):
@@ -76,6 +85,9 @@ class Item:
         self.name = inter.name
         self.desc = inter.desc
         self.aliases = inter.aliases
+
+    def isName(self, name: str) -> bool:
+        return self.name == name or name in self.aliases
 
 
 class Interactable:
@@ -99,19 +111,20 @@ class Interactable:
     def isName(self, name: str) -> bool:
         return name == self.name or name in self.aliases
 
-    def doInteraction(self, player: Player, command: str) -> bool:
+    def doInteraction(self, player: Player, command: str, item = None) -> bool:
         inter = self.getInteraction(command)
         if inter:
-            inter(self, player)
+            inter(self, player, item)
             return True
         return False
 
     def getInteraction(self, command: str):
-        command = command.lower()
-        alias = self.actionAliases.get(command)
-        if alias:
-            command = alias
-        return self.actions.get(command)
+        if not self.hidden:
+            command = command.lower()
+            alias = self.actionAliases.get(command)
+            if alias:
+                command = alias
+            return self.actions.get(command)
 
     def newInteraction(self, name, func, aliases=[]):
         self.actions[name] = func
@@ -119,11 +132,11 @@ class Interactable:
             self.actionAliases[alias] = name
 
     @staticmethod
-    def onUse(interactable, player):
+    def onUse(interactable, player, item = None):
         prRed("This object cannot be used.")
 
     @staticmethod
-    def onExamine(interactable, player):
+    def onExamine(interactable, player, item = None):
         prYellow(interactable.desc)
 
     @staticmethod
@@ -149,9 +162,8 @@ def buildWorld():
         adj = locations[key]["nearbyLocations"]
         aliases = locations[key]["aliases"]
         interactables = locations[key]["interactables"]
-        locations[key] = Location(key, locations[key]["description"])
+        locations[key] = Location(key, locations[key]["description"], aliases, locations[key]["hidden"])
         locations[key].nearbyLocations = adj
-        locations[key].aliases = aliases
         for i in interactables:
             interactable = data["interactables"][i]
             locations[key].interactables.append(
@@ -160,9 +172,26 @@ def buildWorld():
                     interactable["description"],
                     interactable["aliases"],
                     interactable["hidden"],
-                    interactable["gettable"],
+                    interactable["gettable"]
                 )
             )
+
+            if i == "control panel":
+                locations[key].interactables[-1].actions["use"] = interactions.controlPanelUse
+            elif i == "radio":
+                locations[key].interactables[-1].actions["use"] = interactions.radioUseBeforeFixed
+            elif i == "rover":
+                locations[key].interactables[-1].actions["use"] = interactions.roverUse
+            elif i == "transmitter":
+                locations[key].interactables[-1].actions["use"] = interactions.transmitterUse
+            elif i == "hangar door":
+                locations[key].interactables[-1].actions["use"] = interactions.hangarDoorUseBeforeUnlocked
+                locations[key].interactables[-1].actions["examine"] = interactions.hangarDoorExamine
+                locations[key].interactables[-1].actionAliases["open"] = "use"
+            elif i == "keypad":
+                locations[key].interactables[-1].actions["use"] = interactions.keypadUse
+            elif i == "radio tower":
+                locations[key].interactables[-1].actions["use"] = interactions.radioTowerUse
 
     # reconstruct adj-locaations
     for key in locations.keys():
@@ -172,7 +201,7 @@ def buildWorld():
         locations[key].adjLocations = nearbyLocs
 
     # convert adj-locations into real references
-    you = Player
+    you = Player()
     you.currentLocation = locations["mars"]
 
     return you
@@ -189,6 +218,7 @@ def main():
         "items": "inventory",
         "i": "inventory",
         "h": "help",
+        "l": "look"
     }
     helpActionList = ["g(o)/enter", "i(nventory)/items", "get/grab/pickup"]
 
@@ -207,7 +237,9 @@ def main():
         if lookedUpAction:
             verb = lookedUpAction
 
-        if verb.lower() == "go":
+        if verb == "look" and len(userWords) == 1:
+            you.currentLocation.showPlayer()
+        elif verb.lower() == "go":
             foundLoc = False
             if target.lower() == "back" and prevLoc:
                 if you.currentLocation.isConnected(prevLoc):
@@ -215,7 +247,7 @@ def main():
                     you.currentLocation, prevLoc = prevLoc, you.currentLocation
 
             for loc in you.currentLocation.adjLocations:
-                if loc.isName(target):
+                if not loc.hidden and loc.isName(target):
                     foundLoc = True
                     prevLoc = you.currentLocation
                     you.currentLocation = loc
@@ -226,11 +258,6 @@ def main():
             else:
                 you.currentLocation.showPlayer()
             # use command should be of the form "use <item> on <interactable"
-            """
-            elif re.match(r'use ['userText:
-                itemName = userWords[1].lower()
-                interactableName = userWords[]
-            """
         elif verb.lower() == "inventory":
             if len(you.inventory) > 0:
                 prYellow("You have the following items in your inventory:")
@@ -242,7 +269,18 @@ def main():
             for action in helpActionList:
                 prGreen(action)
         else:
-            if target.lower().strip() == "":
+            matches = re.match(r'use\s+(.+)\s+on\s+(.+)', userText)
+            if matches:
+                usedItem = you.getItem(matches[1].lower())
+                interactable = you.currentLocation.getInteractable(matches[2].lower())
+                if not usedItem:
+                    print(f"You do not have a {matches[1]} in your inventory.")
+                elif not interactable:
+                    print(f"There is no {matches[2]} nearby.")
+                else:
+                    if not interactable.doInteraction(you, "use", usedItem):
+                        print(f"You cannot use a {matches[1]} on the {matches[2]}.")
+            elif target.lower().strip() == "":
                 prRed("unknown command... try: h or help")
                 # print(f'What would you like to "{verb.lower()}"?')
             else:
@@ -253,6 +291,11 @@ def main():
                         prRed(f'"{verb}" is not a valid action.')
                 else:
                     prRed(f'"{target}" is not a valid object.')
+
+    if you.alive:
+        print("You win!")
+    else:
+        print("You're dead.")
 
 
 if __name__ == "__main__":

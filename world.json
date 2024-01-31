@@ -3,26 +3,44 @@
     "mars": {
       "aliases": ["planet", "outside"],
       "description": "hot",
-      "nearbyLocations": ["lander", "base", "base hanger"],
-      "interactables": []
+      "nearbyLocations": ["lander", "base", "base hangar"],
+      "interactables": [],
+      "hidden": false
     },
     "lander": {
       "aliases": ["ship"],
       "description": "it's fast",
       "nearbyLocations": ["mars"],
-      "interactables": ["wrench", "control panel"]
+      "interactables": [ "wrench", "control panel", "capacitor" ],
+      "hidden": false
     },
     "base": {
       "aliases": ["home"],
       "description": "it's safe, for now...",
-      "nearbyLocations": ["mars", "base hanger"],
-      "interactables": ["rover"]
+      "nearbyLocations": ["mars", "base hangar"],
+      "interactables": [ "radio", "hangar door", "keypad" ],
+      "hidden": false
     },
-    "base hanger": {
-      "aliases": ["garage"],
+    "base hangar": {
+      "aliases": ["garage", "hangar"],
       "description": "it's safe, for now...",
-      "nearbyLocations": ["mars", "base"],
-      "interactables": ["rover"]
+      "nearbyLocations": ["mars", "base", "radio tower"],
+      "interactables": [ "rover", "ladder" ],
+      "hidden": true
+    },
+    "radio tower": {
+      "aliases": [ "tower" ],
+      "description": "a structure for sending and receiving radio signals",
+      "nearbyLocations": [ "base hangar", "top of radio tower"],
+      "interactables": ["radio tower"],
+      "hidden": false
+    },
+    "top of radio tower": {
+      "aliases": [ "up", "top" ],
+      "description": "it sure is pretty high up",
+      "nearbyLocations": [ "radio tower" ],
+      "interactables": [ "transmitter" ],
+      "hidden": true
     }
   },
   "interactables": {
@@ -40,17 +58,53 @@
       "gettable": false
     },
     "control panel": {
-      "aliases": [],
+      "aliases": ["control panel", "panel"],
       "description": "it controls things",
       "working": true,
       "hidden": false,
       "gettable": false
-    }
-  },
-  "items": {
+    },
     "capacitor": {
       "aliases": [],
-      "description": "it's a electrical doodad"
+      "description": "it's an electrical doodad",
+      "hidden": true,
+      "gettable": true
+    },
+    "radio": {
+      "aliases": ["radio"],
+      "description": "the radio is broken",
+      "hidden": false,
+      "gettable":  false
+    },
+    "ladder": {
+      "aliases": [],
+      "description": "a vertical conveyance device",
+      "hidden": false,
+      "gettable": true
+    },
+    "transmitter": {
+      "aliases": ["transmitter"],
+      "description": "a device for receiving radio signals. it appears to be broken in a way that only a wrench can fix.",
+      "hidden": false,
+      "gettable": false
+    },
+    "hangar door": {
+      "aliases": [ "door" ],
+      "description": "a door leading to the hangar. it's closed. There's a keypad above the door handle.",
+      "hidden": false,
+      "gettable": false
+    },
+    "keypad": {
+      "aliases": [ "pad" ],
+      "description": "a 9-digit keypad",
+      "hidden": true,
+      "gettable": false
+    },
+    "radio tower": {
+      "aliases": [ "tower" ],
+      "description": "a structure for sending and receiving radio signals",
+      "hidden": false,
+      "gettable": false
     }
   }
 }
