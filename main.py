@@ -263,8 +263,8 @@ def main():
         "i(nventory)/items",
         "get/grab/pickup",
         "l(ook)",
-        "u(se) <inventory item> on <object in room>",
-        "u(se) <object in room>",
+        "use <inventory item> on <object in room>",
+        "use <object in room>",
     ]
 
     you = buildWorld()
