@@ -1,3 +1,6 @@
+By: Quinn, Cameron, Alex, Marcelo
+GROUP D_04
+
 ```
  ___________  _______  ___  ___  ___________
 ("     _   ")/"     "||"  \/"  |("     _   ")
@@ -36,7 +39,7 @@ last? Can you survive long enough to be rescued?
 
 ```
 
-You have been stranded on Mars, explore the base, gather resources and survive
+Your spaceship has crashed on Mars and you've been stranded on Mars, explore the base, gather resources needed and survive
 until you are retrieved.
 
 ```
@@ -60,6 +63,7 @@ This connects to the rest of the base
 Base Hangar
 Inside the base is a large hangar meant for working on a lander, there is a broken rover
 and some tools but otherwise empty.
+Use tools that are found like a wrench to fix inportant machines, complete the tasks.
 
 ```
    ___          _      _
