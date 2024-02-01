@@ -343,7 +343,7 @@ def main():
                 if you.currentLocation.isName("escape lander"):
                     endScreen()
                     break
-            # use command should be of the form "use <item> on <interactable"
+            # use command should be of the form "use <item> on <interactable>
         elif verb.lower() == "inventory":
             if len(you.inventory) > 0:
                 prYellow("     You have the following items in your inventory:")
@@ -354,7 +354,7 @@ def main():
         elif verb.lower() == "help":
             for action in helpActionList:
                 prGreen("    " + action)
-        else:
+        elif verb.lower() == "use":
             matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
             if matches:
                 usedItem = you.getItem(matches[1].lower())
@@ -370,17 +370,11 @@ def main():
                         prRed(
                             f"     You cannot use a {matches[1]} on the {matches[2]}."
                         )
-            elif target.lower().strip() == "":
-            # this catches "use <interactable>"
             else:
                 if you.currentLocation.getInteractable(target):
                     you.currentLocation.getInteractable(target).doInteraction(you, "use")
                 else:
                     prRed(f'    {target} not found. Try "h" for help')
-
-        elif verb.lower() == "help":
-            for action in helpActionList:
-                prGreen("    " + action)
         else:
             if target.lower().strip() == "":
                 prRed("     unknown command... try: h or help")
