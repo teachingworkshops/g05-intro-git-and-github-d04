@@ -288,10 +288,6 @@ def main():
         "h": "help",
         "l": "look",
         "pwd": "look",  # silly bash command
-        "u": "use",
-        "open": "use",
-        "activate": "use",
-        "run": "use",
     }
 
     helpActionList = [
@@ -299,8 +295,8 @@ def main():
         "i(nventory)/items",
         "get/grab/pickup",
         "l(ook)",
-        "u(se) <inventory item> on <object in room>",
-        "u(se) <object in room>",
+        "use <inventory item> on <object in room>",
+        "use <object in room>",
     ]
 
     you = buildWorld()
@@ -323,9 +319,6 @@ def main():
         lookedUpAction = actionAliases.get(verb.lower())
         if lookedUpAction:
             verb = lookedUpAction
-
-        userText = " ".join(userWords)
-        matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
 
         if verb == "look" and len(userWords) == 1:
             you.currentLocation.showPlayer()
@@ -358,7 +351,11 @@ def main():
                     prYellow(f"   - {item.name}")
             else:
                 prRed("     You have no items in your inventory.")
-        elif verb.lower() == "use":
+        elif verb.lower() == "help":
+            for action in helpActionList:
+                prGreen("    " + action)
+        else:
+            matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
             if matches:
                 usedItem = you.getItem(matches[1].lower())
                 interactable = you.currentLocation.getInteractable(
@@ -373,6 +370,7 @@ def main():
                         prRed(
                             f"     You cannot use a {matches[1]} on the {matches[2]}."
                         )
+            elif target.lower().strip() == "":
             # this catches "use <interactable>"
             else:
                 if you.currentLocation.getInteractable(target):
