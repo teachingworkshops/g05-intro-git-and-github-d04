@@ -1,20 +1,24 @@
 def controlPanelUse(panel, player, item):
-    if (item == None):
+    if item == None:
         print("You flip a few switches, but nothing happens.")
-    elif (item.isName("wrench")):
-        print("You loosen the bolts on the control panel and remove the faceplate, exposing the components beneath.")
+    elif item.isName("wrench"):
+        print(
+            "You loosen the bolts on the control panel and remove the faceplate, exposing the components beneath."
+        )
 
         panel.name = "dismantled control panel"
-       # panel.desc = new description
+        # panel.desc = new description
         panel.actions["use"] = None
         panel.actions["examine"] = controlPanelExamineAfterOpened
         return True
     else:
         return False
 
+
 def controlPanelExamineAfterOpened(panel, player, item):
     panel.onExamine(panel, player, item)
     player.currentLocation.getInteractable("capacitor").hidden = False
+
 
 def radioUseBeforeFixed(radio, player, item):
     if item == None:
@@ -28,7 +32,8 @@ def radioUseBeforeFixed(radio, player, item):
         player.inventory.remove(item)
         return True
     return False
-    
+
+
 def radioUseAfterFixed(radio, player, item):
     if not item == None:
         return False
@@ -36,13 +41,15 @@ def radioUseAfterFixed(radio, player, item):
     print("You use the radio to call for help.")
     return True
 
+
 def roverUse(rover, player, item):
     if not item == None:
         return False
-    
+
     # we don't have a way of sending the player to an arbitrary location
     print("You could use this rover to drive out to the radio tower.")
     return True
+
 
 def transmitterUse(transmitter, player, item):
     if item == None:
@@ -57,12 +64,14 @@ def transmitterUse(transmitter, player, item):
         return True
     return False
 
+
 def hangarDoorUseBeforeUnlocked(door, player, item):
     if not item == None:
         return False
 
     print("The door is securely shut.")
     return True
+
 
 def hangarDoorUseAfterUnlocked(door, player, item):
     if not item == None:
@@ -74,10 +83,12 @@ def hangarDoorUseAfterUnlocked(door, player, item):
     player.currentLocation.getAdjLocation("base hangar").hidden = False
     return True
 
+
 def hangarDoorExamine(door, player, item):
     door.onExamine(door, player, item)
 
     player.currentLocation.getInteractable("keypad").hidden = False
+
 
 def keypadUse(keypad, player, item):
     if not item == None:
@@ -86,30 +97,37 @@ def keypadUse(keypad, player, item):
     correctCode = "1234"
     numGuesses = 3
 
-    print("Type \"exit\" to go back.")
+    print('Type "exit" to go back.')
 
     exit = False
-    while(not exit):
+    while not exit:
         userInput = input("Enter a 4-digit code: ").lower().strip()
         if userInput == "exit":
             exit = True
-        elif (userInput != correctCode):
+        elif userInput != correctCode:
             print("Incorrect!\n")
             numGuesses -= 1
             if numGuesses == 0:
-                print("You have triggered the base's self-destruct mechanism. The entire facility instantly explodes.")
+                print(
+                    "You have triggered the base's self-destruct mechanism. The entire facility instantly explodes."
+                )
                 player.alive = False
                 exit = True
             else:
-                print(f"You have {numGuesses} {'attempts' if numGuesses > 1 else 'attempt'} remaining.")
+                print(
+                    f"You have {numGuesses} {'attempts' if numGuesses > 1 else 'attempt'} remaining."
+                )
         else:
             print("Success!\n")
             print("You hear the door leading to the hangar unlock.")
             keypad.hidden = True
-            player.currentLocation.getInteractable("door").actions["use"] = hangarDoorUseAfterUnlocked
+            player.currentLocation.getInteractable("door").actions[
+                "use"
+            ] = hangarDoorUseAfterUnlocked
             exit = True
 
     return True
+
 
 def radioTowerUse(tower, player, item):
     if item == None:
@@ -119,6 +137,7 @@ def radioTowerUse(tower, player, item):
         print("You prop the ladder up against the side of the tower.")
 
         player.inventory.remove(item)
-        player.currentLocation.getAdjLocation("top of radio tower").hidden = False
+        player.currentLocation.getAdjLocation(
+            "top of radio tower").hidden = False
 
         return True

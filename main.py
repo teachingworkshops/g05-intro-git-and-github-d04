@@ -1,8 +1,9 @@
 import json
-import re
-from colorOutput import *
-import interactions
 import os
+import re
+
+import interactions
+from colorOutput import *
 
 # clear term
 os.system("cls||clear")
@@ -24,6 +25,9 @@ class Location:
         self.interactables = []
 
     def showPlayer(self):
+        # clear term
+        os.system("cls||clear")
+
         prPurple(self.name + " " + self.description)
 
         ascii_file = f"{self.name.lower().replace(' ', '')}.txt"
@@ -111,7 +115,8 @@ class Interactable:
         self.hidden = hidden
         self.gettable = gettable
 
-        self.actions = {"use": self.onUse, "examine": self.onExamine, "get": self.onGet}
+        self.actions = {"use": self.onUse,
+                        "examine": self.onExamine, "get": self.onGet}
 
         self.actionAliases = {
             "look": "examine",
@@ -242,13 +247,21 @@ def main():
         "g": "go",
         "grab": "get",
         "pickup": "get",
+        "pick": "get",
         "inv": "inventory",
         "items": "inventory",
         "i": "inventory",
         "h": "help",
         "l": "look",
     }
-    helpActionList = ["g(o)/enter", "i(nventory)/items", "get/grab/pickup", "l(ook)"]
+
+    helpActionList = [
+        "g(o)/enter",
+        "i(nventory)/items",
+        "get/grab/pickup",
+        "l(ook)",
+        "use <item> on <object>",
+    ]
 
     you = buildWorld()
     prPurple("You are on " + you.currentLocation.name)
@@ -256,10 +269,11 @@ def main():
     you.currentLocation.showPlayer()
     while you.alive:
         userText = input()
+
         print()  # add space
         userWords = userText.split(" ")
         verb = userWords[0]
-        target = userText[len(verb) + 1 :]
+        target = userText[len(verb) + 1:]
 
         lookedUpAction = actionAliases.get(verb.lower())
         if lookedUpAction:
@@ -275,7 +289,7 @@ def main():
                     you.currentLocation, prevLoc = prevLoc, you.currentLocation
 
             for loc in you.currentLocation.adjLocations:
-                if not loc.hidden and loc.isName(target):
+                if not loc.hidden and loc.isName(target.lower()):
                     foundLoc = True
                     prevLoc = you.currentLocation
                     you.currentLocation = loc
@@ -300,14 +314,16 @@ def main():
             matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
             if matches:
                 usedItem = you.getItem(matches[1].lower())
-                interactable = you.currentLocation.getInteractable(matches[2].lower())
+                interactable = you.currentLocation.getInteractable(
+                    matches[2].lower())
                 if not usedItem:
                     print(f"You do not have a {matches[1]} in your inventory.")
                 elif not interactable:
                     print(f"There is no {matches[2]} nearby.")
                 else:
                     if not interactable.doInteraction(you, "use", usedItem):
-                        print(f"You cannot use a {matches[1]} on the {matches[2]}.")
+                        print(
+                            f"You cannot use a {matches[1]} on the {matches[2]}.")
             elif target.lower().strip() == "":
                 prRed("unknown command... try: h or help")
                 # print(f'What would you like to "{verb.lower()}"?')
