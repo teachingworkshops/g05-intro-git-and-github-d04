@@ -30,7 +30,7 @@ class Location:
 
         prPurple(self.name + " " + self.description)
 
-        ascii_file = f"{self.name.lower().replace(' ', '')}.txt"
+        ascii_file = f"art/{self.name.lower().replace(' ', '')}.txt"
         print_ascii(ascii_file)
 
         if len(self.interactables) != 0:
@@ -245,14 +245,18 @@ def main():
         "goto": "go",
         "enter": "go",
         "g": "go",
+        "cd": "go",  # silly bash command
         "grab": "get",
         "pickup": "get",
         "pick": "get",
+        "mv": "get",  # silly bash command
+        "i": "inventory",
         "inv": "inventory",
         "items": "inventory",
-        "i": "inventory",
+        "ls": "inventory",  # silly bash command
         "h": "help",
         "l": "look",
+        "pwd": "look",  # silly bash command
     }
 
     helpActionList = [
