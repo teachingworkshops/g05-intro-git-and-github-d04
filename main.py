@@ -115,8 +115,7 @@ class Interactable:
         self.hidden = hidden
         self.gettable = gettable
 
-        self.actions = {"use": self.onUse,
-                        "examine": self.onExamine, "get": self.onGet}
+        self.actions = {"use": self.onUse, "examine": self.onExamine, "get": self.onGet}
 
         self.actionAliases = {
             "look": "examine",
@@ -282,7 +281,7 @@ def main():
         print()  # add space
         userWords = userText.split(" ")
         verb = userWords[0]
-        target = userText[len(verb) + 1:]
+        target = userText[len(verb) + 1 :]
 
         lookedUpAction = actionAliases.get(verb.lower())
         if lookedUpAction:
@@ -323,11 +322,9 @@ def main():
             matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
             if matches:
                 usedItem = you.getItem(matches[1].lower())
-                interactable = you.currentLocation.getInteractable(
-                    matches[2].lower())
+                interactable = you.currentLocation.getInteractable(matches[2].lower())
                 if not usedItem:
-                    print(
-                        f"     You do not have a {matches[1]} in your inventory.")
+                    print(f"     You do not have a {matches[1]} in your inventory.")
                 elif not interactable:
                     print(f"     There is no {matches[2]} nearby.")
                 else:
