@@ -257,6 +257,7 @@ def main():
         "h": "help",
         "l": "look",
         "pwd": "look",  # silly bash command
+        "u": "use",
     }
 
     helpActionList = [
@@ -264,7 +265,8 @@ def main():
         "i(nventory)/items",
         "get/grab/pickup",
         "l(ook)",
-        "use <inventory item> on <object>",
+        "u(se) <inventory item> on <object in room>",
+        "u(se) <object in room>",
     ]
 
     you = buildWorld()
@@ -304,20 +306,20 @@ def main():
                     break
 
             if not foundLoc:
-                prRed(f'"{target}" is not a valid location.')
+                prRed(f'"     {target}" is not a valid location.')
             else:
                 you.currentLocation.showPlayer()
             # use command should be of the form "use <item> on <interactable"
         elif verb.lower() == "inventory":
             if len(you.inventory) > 0:
-                prYellow("You have the following items in your inventory:")
+                prYellow("     You have the following items in your inventory:")
                 for item in you.inventory:
                     prYellow(f"   - {item.name}")
             else:
-                prRed("You have no items in your inventory.")
+                prRed("     You have no items in your inventory.")
         elif verb.lower() == "help":
             for action in helpActionList:
-                prGreen(action)
+                prGreen("    " + action)
         else:
             matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
             if matches:
@@ -325,29 +327,31 @@ def main():
                 interactable = you.currentLocation.getInteractable(
                     matches[2].lower())
                 if not usedItem:
-                    print(f"You do not have a {matches[1]} in your inventory.")
+                    print(
+                        f"     You do not have a {matches[1]} in your inventory.")
                 elif not interactable:
-                    print(f"There is no {matches[2]} nearby.")
+                    print(f"     There is no {matches[2]} nearby.")
                 else:
                     if not interactable.doInteraction(you, "use", usedItem):
                         print(
-                            f"You cannot use a {matches[1]} on the {matches[2]}.")
+                            f"     You cannot use a {matches[1]} on the {matches[2]}."
+                        )
             elif target.lower().strip() == "":
-                prRed("unknown command... try: h or help")
+                prRed("     unknown command... try: h or help")
                 # print(f'What would you like to "{verb.lower()}"?')
             else:
                 tInter = you.currentLocation.getInteractable(target.lower())
 
                 if tInter:
                     if not tInter.doInteraction(you, verb.lower()):
-                        prRed(f'"{verb}" is not a valid action.')
+                        prRed(f'    "{verb}" is not a valid action.')
                 else:
-                    prRed(f'"{target}" is not a valid object.')
+                    prRed(f'    "{target}" is not a valid object.')
 
     if you.alive:
-        print("You win!")
+        prGreen("####You are win####")
     else:
-        print("You're dead.")
+        prRed("####You are die####")
 
 
 if __name__ == "__main__":

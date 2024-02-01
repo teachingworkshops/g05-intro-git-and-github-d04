@@ -13,7 +13,7 @@
       "aliases": ["ship"],
       "description": "a broken lander lies on the martian surface, potential salvation hidden in its wreckage.",
       "nearbyLocations": ["mars"],
-      "interactables": ["wrench", "control panel"],
+      "interactables": ["wrench", "control panel", "capacitor"],
       "longdescription": "the lander, once a proud symbol of arrival, now rests battered and broken on the martian soil. its hull, scarred by a rough descent, reveals the harshness of the martian atmosphere. nearby, a wrench protrudes from the red regolith, a potential tool for repairs. a flickering control panel, despite its damaged state, beckons for interaction, promising insights into the lander's malfunction.",
       "asciiart": "",
       "hidden": false
@@ -22,7 +22,7 @@
       "aliases": ["home"],
       "description": "the martian base, a metallic haven amidst the red expanse.",
       "nearbyLocations": ["mars", "base hangar"],
-      "interactables": ["rover", "hangardoor", "keypad"],
+      "interactables": ["hangardoor", "keypad"],
       "longdescription": "nestled within the desolate martian terrain, the base stands as a solitary outpost, its metallic structures contrasting sharply with the rust-colored landscape. the hum of machinery echoes through the corridors as you navigate the hub of survival on this alien planet. essential equipment lines the walls, and the air carries a constant reminder of the isolation that comes with being stranded on mars.",
       "asciiart": "",
       "hidden": false
@@ -43,7 +43,7 @@
       "interactables": [],
       "longdescription": "approaching a modest base focused solely on communications, a simple yet purposeful structure stands interconnected with the martian soil. the tower stands tall, antennas reaching out into the vastness of space, a beacon of hope for communication in this isolated world.",
       "asciiart": "",
-      "hidden": false
+      "hidden": true
     },
     "top of antenna tower": {
       "aliases": ["antenna top", "top", "up"],
