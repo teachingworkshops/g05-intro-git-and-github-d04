@@ -3,6 +3,7 @@ import os
 import re
 
 import interactions
+import time
 from colorOutput import *
 
 # clear term
@@ -11,7 +12,6 @@ os.system("cls||clear")
 def print_ascii(fn):
     f = open(fn, "r")
     prRed("".join([line for line in f]))
-
 
 class Location:
     def __init__(self, name, desc, longDesc, aliases=[], hidden=False):

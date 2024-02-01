@@ -1,3 +1,9 @@
+import random
+
+# generate the keypad code
+random.seed()
+keypadCode = str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9))
+
 def controlPanelUse(panel, player, item):
     if item == None:
         print("You flip a few switches, but nothing happens.")
@@ -103,7 +109,8 @@ def keypadUse(keypad, player, item):
     if not item == None:
         return False
 
-    correctCode = "1234"
+    print(f"DEBUG: keypadCode={keypadCode}")
+    correctCode = keypadCode
     numGuesses = 3
 
     print('Type "exit" to go back.')
