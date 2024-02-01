@@ -169,8 +169,14 @@ class Interactable:
 
         else:
             prRed("You cannot pick up this object.")
-
-
+def startScreen():
+    ascii_file = f"art/title.txt"
+    print_ascii(ascii_file)
+    prGreen("during a research operation on mars, a catastrophic storm struck causing the need for emergency evacuation, your crew left you behind leaving you to find a way to escape")
+    prPurple("press any key to start")
+    input()
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
 def buildWorld():
     data = json.load(open("world.json"))
     locations = data["locations"]
@@ -268,6 +274,7 @@ def main():
     ]
 
     you = buildWorld()
+    startScreen()
     prPurple("You are on " + you.currentLocation.name)
     prevLoc = None
     you.currentLocation.showPlayer()
