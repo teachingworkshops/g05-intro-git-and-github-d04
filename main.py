@@ -86,7 +86,6 @@ class Location:
 
         return searchVal in list(map(lambda loc: loc.name, self.adjLocations))
 
-
 class Player:
     def __init__(self):
         self.currentLocation: Location = Location("null", "", "")
@@ -101,7 +100,6 @@ class Player:
             if item.isName(itemName):
                 return item
         return None
-
 
 class Item:
     def __init__(self, name, desc, aliases=[]):
@@ -312,6 +310,11 @@ def main():
     prevLoc = None
     you.currentLocation.showPlayer()
     while you.alive:
+        if you.currentLocation.isName("escape lander"):
+            print("You climb inside the escape vehicle.")
+            break
+
+
         userText = input().strip(" ")
 
         # default action is look

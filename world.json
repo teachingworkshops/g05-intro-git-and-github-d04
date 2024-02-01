@@ -22,7 +22,7 @@
       "aliases": ["home"],
       "description": "The martian base, a metallic haven amidst the red expanse.",
       "nearbyLocations": ["mars", "base hangar"],
-      "interactables": ["hangardoor", "keypad", "terminal"],
+      "interactables": ["hangardoor", "keypad", "terminal", "radio"],
       "longdescription": "Nestled within the desolate martian terrain, the base stands as a solitary outpost, its metallic structures contrasting sharply with the rust-colored landscape. The hum of machinery echoes through the corridors as you navigate the hub of survival on this alien planet. Essential equipment lines the walls, and the air carries a constant reminder of the isolation that comes with being stranded on mars.",
       "asciiart": "",
       "hidden": false
@@ -55,7 +55,7 @@
       "hidden": false
     },
     "escape lander": {
-      "aliases": ["escape", "rescue"],
+      "aliases": ["escape", "rescue", "lander"],
       "description": "The escape lander has come to rescue you",
       "nearbyLocations": ["mars"],
       "interactables": [""],

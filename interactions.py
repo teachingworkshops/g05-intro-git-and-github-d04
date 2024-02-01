@@ -13,7 +13,7 @@ def controlPanelUse(panel, player, item):
         )
 
         panel.name = "dismantled control panel"
-        # panel.desc = new description
+        panel.desc = "Amidst the wires, you notice a capacitor."
         panel.actions["use"] = None
         panel.actions["examine"] = controlPanelExamineAfterOpened
         return True
@@ -33,6 +33,7 @@ def radioUseBeforeFixed(radio, player, item):
     elif item.isName("capacitor"):
         print("you fix the radio")
 
+        player.fixedRadio = True
         radio.name = "radio (fixed)"
         radio.actions["use"] = radioUseAfterFixed
         player.inventory.remove(item)
@@ -44,8 +45,17 @@ def radioUseAfterFixed(radio, player, item):
     if not item == None:
         return False
 
-    print("You use the radio to call for help.")
-    player.fixedRadio = True
+    if player.fixedTransmitter:
+        print("You use the radio to call for assistance. Shortly afterwards, a space craft lands outside!")
+
+        mars = player.currentLocation.getAdjLocation("mars")
+        lander = mars.getAdjLocation("lander")
+        lander.hidden = True
+        escape = mars.getAdjLocation("escape lander")
+        escape.hidden = False
+    else:
+        print("All you hear is static.")
+
     return True
 
 
@@ -72,22 +82,12 @@ def transmitterUse(transmitter, player, item):
             player, item
         )  # prints default use message, which says "You can't use this object."
         return True
-    elif item == None and player.fixedTransmitter:
-        tower = player.currentLocation.getAdjLocation("antenna base")
-        mars = tower.getAdjLocation("mars")
-        lander = mars.getAdjLocation("lander")
-        lander.hidden = True
-        escape = mars.getAdjLocation("escape lander")
-        escape.hidden = False
-        print("You use fixed transmitter! A space craft landed outside!")
-        return True
-
     if item.isName("wrench"):
-        print("You use the wrench to fix the transmitter.")
-
+        print("You repair the transmitter.")
         transmitter.name = "transmitter (fixed)"
         player.fixedTransmitter = True
-        # trandmitter.desc = new description
+
+
         return True
     return False
 
