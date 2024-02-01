@@ -331,7 +331,7 @@ def main():
             you.currentLocation.showPlayer()
         elif verb.lower() == "go":
             foundLoc = False
-            if target.lower() == "back" and prevLoc:
+            if target.lower() == "back" or target.lower() == ".." and prevLoc:
                 if you.currentLocation.isConnected(prevLoc):
                     foundLoc = True
                     you.currentLocation, prevLoc = prevLoc, you.currentLocation
@@ -373,8 +373,12 @@ def main():
                         prRed(
                             f"     You cannot use a {matches[1]} on the {matches[2]}."
                         )
+            # this catches "use <interactable>"
             else:
-                prRed(f'    {target} not found. Try "h" for help')
+                if you.currentLocation.getInteractable(target):
+                    you.currentLocation.getInteractable(target).doInteraction(you, "use")
+                else:
+                    prRed(f'    {target} not found. Try "h" for help')
 
         elif verb.lower() == "help":
             for action in helpActionList:
