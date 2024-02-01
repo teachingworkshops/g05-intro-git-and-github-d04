@@ -53,6 +53,15 @@
       "longdescription": "climbing to the summit of the communications tower, you find yourself atop a metal platform with a panoramic view of the martian landscape. the rhythmic blinking of communication equipment surrounds you, and the thin atmosphere makes the stars above seem unusually vivid. from this vantage point, you can see the entirety of the base, the distant landers, and the vast expanse of the martian surface, emphasizing the isolation that defines your journey.",
       "asciiart": "",
       "hidden": false
+    },
+    "escape lander": {
+      "aliases": ["escape", "rescue"],
+      "description": "the escape lander has come to rescue you",
+      "nearbyLocations": ["mars"],
+      "interactables": [""],
+      "longdescription": "",
+      "asciiart": "",
+      "hidden": true
     }
   },
   "interactables": {
