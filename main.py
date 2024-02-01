@@ -8,7 +8,6 @@ from colorOutput import *
 # clear term
 os.system("cls||clear")
 
-
 def print_ascii(fn):
     f = open(fn, "r")
     prRed("".join([line for line in f]))
@@ -88,16 +87,19 @@ class Location:
 
 
 class Player:
-    currentLocation: Location = Location("null", "", "")
-    alive: bool = True
-    inventory = []
+    def __init__(self):
+        self.currentLocation: Location = Location("null", "", "")
+        self.alive: bool = True
+        self.inventory = []
+
+        self.usedRadio = False
+        self.fixedTransmitter = False
 
     def getItem(self, itemName):
         for item in self.inventory:
             if item.isName(itemName):
                 return item
         return None
-
 
 class Item:
     def __init__(self, name, desc, aliases=[]):

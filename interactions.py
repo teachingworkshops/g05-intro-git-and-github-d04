@@ -39,6 +39,7 @@ def radioUseAfterFixed(radio, player, item):
         return False
 
     print("You use the radio to call for help.")
+    player.fixedRadio = True
     return True
 
 
@@ -61,13 +62,14 @@ def roverUse(rover, player, item):
 
 def transmitterUse(transmitter, player, item):
     if item == None:
-        transmitter.onUse  # WARN: no idea what this does (possibly nothing)
+        transmitter.onUse  # prints default use message, which says "You can't use this object."
         return True
 
     if item.isName("wrench"):
         print("You use the wrench to fix the transmitter.")
 
         transmitter.name = "transmitter (fixed)"
+        player.fixedTransmitter = True
         # trandmitter.desc = new description
         return True
     return False
