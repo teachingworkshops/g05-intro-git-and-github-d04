@@ -169,6 +169,7 @@ class Interactable:
 
         else:
             prRed("You cannot pick up this object.")
+            
 def startScreen():
     ascii_file = f"art/title.txt"
     print_ascii(ascii_file)
@@ -177,8 +178,9 @@ def startScreen():
     input()
     os.system('cls' if os.name == 'nt' else 'clear')
     
+    
 def endScreen():
-    ascii_file = f"art/ending.txt"
+    ascii_file = f"art/escapelander.txt"
     print_ascii(ascii_file)
     prGreen("congratulations you have been rescued from mars!")
     prPurple("press any key to view credits")
@@ -190,7 +192,7 @@ def endScreen():
 def buildWorld():
     data = json.load(open("world.json"))
     locations = data["locations"]
-    # convert top-level values to locations
+
     for key in locations.keys():
         adj = locations[key]["nearbyLocations"]
         interactables = locations[key]["interactables"]
@@ -202,16 +204,17 @@ def buildWorld():
         )
         locations[key].adjLocations = adj
         for i in interactables:
-            interactable = data["interactables"][i]
-            locations[key].interactables.append(
-                Interactable(
-                    i,
-                    interactable["description"],
-                    interactable["aliases"],
-                    interactable["hidden"],
-                    interactable["gettable"],
+            if i:  # Check if i is not an empty string
+                interactable = data["interactables"][i]
+                locations[key].interactables.append(
+                    Interactable(
+                        i,
+                        interactable["description"],
+                        interactable["aliases"],
+                        interactable["hidden"],
+                        interactable["gettable"],
+                    )
                 )
-            )
 
             if i == "control panel":
                 locations[key].interactables[-1].actions[
@@ -324,6 +327,9 @@ def main():
                 prRed(f'     "{target}" is not a valid location.')
             else:
                 you.currentLocation.showPlayer()
+                if you.currentLocation.isName("escape lander"):
+                    endScreen()
+                    break
             # use command should be of the form "use <item> on <interactable"
         elif verb.lower() == "inventory":
             if len(you.inventory) > 0:

@@ -3,7 +3,7 @@
     "mars": {
       "aliases": ["planet", "outside"],
       "description": "standing alone on the martian surface, surrounded by the solitude of the red landscape.",
-      "nearbyLocations": ["lander", "base", "base hangar"],
+      "nearbyLocations": ["lander", "base", "base hangar", "escape lander"],
       "interactables": [],
       "longdescription": "outside the safety of the base, you find yourself standing in the midst of mars' barren surface. the ground beneath your feet is a mixture of red regolith and rocky outcrops. the distant horizon is marked by the curvature of the planet, and the thin atmosphere lends an otherworldly quality to the landscape. the only sounds are your own breath and the gentle crunch of martian soil underfoot.",
       "asciiart": "",
@@ -61,7 +61,7 @@
       "interactables": [""],
       "longdescription": "",
       "asciiart": "",
-      "hidden": true
+      "hidden": false
     }
   },
   "interactables": {
