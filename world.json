@@ -22,7 +22,7 @@
       "aliases": ["home"],
       "description": "the martian base, a metallic haven amidst the red expanse.",
       "nearbyLocations": ["mars", "base hangar"],
-      "interactables": ["rover"],
+      "interactables": ["rover", "hangardoor", "keypad"],
       "longdescription": "nestled within the desolate martian terrain, the base stands as a solitary outpost, its metallic structures contrasting sharply with the rust-colored landscape. the hum of machinery echoes through the corridors as you navigate the hub of survival on this alien planet. essential equipment lines the walls, and the air carries a constant reminder of the isolation that comes with being stranded on mars.",
       "asciiart": "",
       "hidden": false
@@ -34,7 +34,7 @@
       "interactables": ["rover"],
       "longdescription": "within the base's hangar, a martian rover stands as a symbol of exploration and escape. the hangar is currently sealed, and the airlock control panel blinks a red light, signifying closure. the rover, sturdy and equipped for the martian terrain, awaits a daring expedition. to open the hangar and ensure your safe return, you'll need to engage with the control panel",
       "asciiart": "",
-      "hidden": false
+      "hidden": true
     },
     "antenna base": {
       "aliases": ["antenna", "tower"],
@@ -100,7 +100,7 @@
       "hidden": false,
       "gettable": false
     },
-    "hangar door": {
+    "hangardoor": {
       "aliases": ["door"],
       "description": "a door leading to the hangar. it's closed. There's a keypad above the door handle.",
       "hidden": false,

@@ -1,4 +1,3 @@
-# from https://stackoverflow.com/questions/287871/how-do-i-print-colored-text-to-the-terminal
 from colorama import Fore, Style
 
 

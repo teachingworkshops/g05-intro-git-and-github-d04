@@ -86,7 +86,6 @@ def hangarDoorUseAfterUnlocked(door, player, item):
 
 def hangarDoorExamine(door, player, item):
     door.onExamine(door, player, item)
-
     player.currentLocation.getInteractable("keypad").hidden = False
 
 

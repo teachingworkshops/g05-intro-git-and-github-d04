@@ -28,10 +28,10 @@ class Location:
         # clear term
         os.system("cls||clear")
 
-        prPurple(self.name + " " + self.description)
-
         ascii_file = f"art/{self.name.lower().replace(' ', '')}.txt"
         print_ascii(ascii_file)
+
+        prPurple(self.name + " " + self.description + "\n")
 
         if len(self.interactables) != 0:
             prCyan("Objects nearby:")
@@ -104,7 +104,7 @@ class Item:
         self.aliases = inter.aliases
 
     def isName(self, name: str) -> bool:
-        return self.name == name or name in self.aliases
+        return self.name.lower() == name.lower() or name.lower() in self.aliases
 
 
 class Interactable:
@@ -212,7 +212,7 @@ def buildWorld():
                 locations[key].interactables[-1].actions[
                     "use"
                 ] = interactions.transmitterUse
-            elif i == "hangar door":
+            elif i == "hangardoor":
                 locations[key].interactables[-1].actions[
                     "use"
                 ] = interactions.hangarDoorUseBeforeUnlocked
@@ -264,7 +264,7 @@ def main():
         "i(nventory)/items",
         "get/grab/pickup",
         "l(ook)",
-        "use <item> on <object>",
+        "use <inventory item> on <object>",
     ]
 
     you = buildWorld()
@@ -273,6 +273,10 @@ def main():
     you.currentLocation.showPlayer()
     while you.alive:
         userText = input()
+
+        # default action is look
+        if len(userText) == 0:
+            userText = "look"
 
         print()  # add space
         userWords = userText.split(" ")
@@ -293,7 +297,7 @@ def main():
                     you.currentLocation, prevLoc = prevLoc, you.currentLocation
 
             for loc in you.currentLocation.adjLocations:
-                if not loc.hidden and loc.isName(target.lower()):
+                if not loc.hidden and loc.isName(target):
                     foundLoc = True
                     prevLoc = you.currentLocation
                     you.currentLocation = loc
