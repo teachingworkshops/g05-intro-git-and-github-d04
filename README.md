@@ -47,18 +47,18 @@ until you are retrieved.
 ```
 
 The Surface of Mars
-Standing outside of the Martian Base you can see for miles, there is not much around
+Standing outside the Martian Base you can see for miles, there is not much around,
 and it's best not to travel too far until you are better prepared.
 
 Site of the crashed Lander
-Part of the base includes a launch pad for incoming and outcoming shipments
+Part of the base includes a launch pad for incoming and outgoing shipments
 
 Martian Base
-Inside of the Martian base, there are some computer systems, a small kitchen, and some tables.
+Inside the Martian base, there are some computer systems, a small kitchen, and some tables.
 This connects to the rest of the base
 
 Base Hangar
-Inside of the base is a large hangar meant for working on a lander, there is a broken rover
+Inside the base is a large hangar meant for working on a lander, there is a broken rover
 and some tools but otherwise empty.
 
 ```

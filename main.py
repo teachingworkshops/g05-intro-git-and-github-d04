@@ -15,11 +15,13 @@ def print_ascii(fn):
 
 
 class Location:
-    def __init__(self, name, desc, aliases=[], hidden=False):
+    def __init__(self, name, desc, longDesc, aliases=[], hidden=False):
         self.name = name
         self.description = desc
+        self.longDescription = longDesc
         self.aliases = aliases
         self.hidden = hidden
+        self.visited = False
 
         self.adjLocations = []
         self.interactables = []
@@ -31,7 +33,11 @@ class Location:
         ascii_file = f"art/{self.name.lower().replace(' ', '')}.txt"
         print_ascii(ascii_file)
 
-        prPurple(self.name + " " + self.description + "\n")
+        prYellow("Location: " + self.name)
+        if self.visited or len(self.longDescription) == 0:
+            prPurple(self.description + "\n")
+        else:
+            prPurple(self.longDescription + "\n")
 
         if len(self.interactables) != 0:
             prCyan("Objects nearby:")
@@ -43,6 +49,7 @@ class Location:
             for loc in self.adjLocations:
                 if not loc.hidden:
                     prBlue(f"    - {loc.name}")
+        self.visited = True
 
     def isName(self, name: str) -> bool:
         return name == self.name or name in self.aliases
@@ -81,7 +88,7 @@ class Location:
 
 
 class Player:
-    currentLocation: Location = Location("null", "")
+    currentLocation: Location = Location("null", "", "")
     alive: bool = True
     inventory = []
 
@@ -115,7 +122,8 @@ class Interactable:
         self.hidden = hidden
         self.gettable = gettable
 
-        self.actions = {"use": self.onUse, "examine": self.onExamine, "get": self.onGet}
+        self.actions = {"use": self.onUse,
+                        "examine": self.onExamine, "get": self.onGet}
 
         self.actionAliases = {
             "look": "examine",
@@ -169,26 +177,30 @@ class Interactable:
 
         else:
             prRed("You cannot pick up this object.")
-            
+
+
 def startScreen():
     ascii_file = f"art/title.txt"
     print_ascii(ascii_file)
-    prGreen("during a research operation on mars, a catastrophic storm struck causing the need for emergency evacuation, your crew left you behind leaving you to find a way to escape")
+    prGreen(
+        "during a research operation on mars, a catastrophic storm struck causing the need for emergency evacuation, your crew left you behind leaving you to find a way to escape"
+    )
     prPurple("press any key to start")
     input()
-    os.system('cls' if os.name == 'nt' else 'clear')
-    
-    
+    os.system("cls" if os.name == "nt" else "clear")
+
+
 def endScreen():
     ascii_file = f"art/escapelander.txt"
     print_ascii(ascii_file)
     prGreen("congratulations you have been rescued from mars!")
     prPurple("press any key to view credits")
     input()
-    os.system('cls' if os.name == 'nt' else 'clear')  
+    os.system("cls" if os.name == "nt" else "clear")
     ascii_file = f"art/credits.txt"
     print_ascii(ascii_file)
-    
+
+
 def buildWorld():
     data = json.load(open("world.json"))
     locations = data["locations"]
@@ -199,6 +211,7 @@ def buildWorld():
         locations[key] = Location(
             key,
             locations[key]["description"],
+            locations[key]["longdescription"],
             locations[key]["aliases"],
             locations[key]["hidden"],
         )
@@ -301,7 +314,7 @@ def main():
         print()  # add space
         userWords = userText.split(" ")
         verb = userWords[0]
-        target = userText[len(verb) + 1 :]
+        target = userText[len(verb) + 1:]
 
         lookedUpAction = actionAliases.get(verb.lower())
         if lookedUpAction:
@@ -345,14 +358,16 @@ def main():
             matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
             if matches:
                 usedItem = you.getItem(matches[1].lower())
-                interactable = you.currentLocation.getInteractable(matches[2].lower())
+                interactable = you.currentLocation.getInteractable(
+                    matches[2].lower())
                 if not usedItem:
-                    print(f"     You do not have a {matches[1]} in your inventory.")
+                    prRed(
+                        f"    You do not have a {matches[1]} in your inventory.")
                 elif not interactable:
-                    print(f"     There is no {matches[2]} nearby.")
+                    prRed(f"     There is no {matches[2]} nearby.")
                 else:
                     if not interactable.doInteraction(you, "use", usedItem):
-                        print(
+                        prRed(
                             f"     You cannot use a {matches[1]} on the {matches[2]}."
                         )
             elif target.lower().strip() == "":
