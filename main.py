@@ -259,6 +259,10 @@ def buildWorld():
                 locations[key].interactables[-1].actions[
                     "use"
                 ] = interactions.radioTowerUse
+            elif i == "terminal":
+                locations[key].interactables[-1].actions[
+                    "use"
+                ] = interactions.terminalUse
 
     # reconstruct adj-locaations
     for key in locations.keys():

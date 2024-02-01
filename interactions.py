@@ -109,7 +109,6 @@ def keypadUse(keypad, player, item):
     if not item == None:
         return False
 
-    print(f"DEBUG: keypadCode={keypadCode}")
     correctCode = keypadCode
     numGuesses = 3
 
@@ -157,3 +156,12 @@ def radioTowerUse(tower, player, item):
             "top of radio tower").hidden = False
 
         return True
+
+def terminalUse(terminal, player, item):
+    if item == None:
+        print(f"Fortunately, whomever used this terminal last forgot to use out. There's an open text file that reads:\n\"Note to self: {keypadCode}\"")
+    elif item.isName("wrench"):
+        print("You smash up the terminal real good.")
+        terminal.name = "terminal (broken)"
+        terminal.desc = "It's damaged beyond repair. Maybe you shouldn't have done that..."
+        terminal.actions["use"] = terminal.onUse

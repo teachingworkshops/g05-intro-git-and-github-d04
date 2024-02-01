@@ -22,7 +22,7 @@
       "aliases": ["home"],
       "description": "The martian base, a metallic haven amidst the red expanse.",
       "nearbyLocations": ["mars", "base hangar"],
-      "interactables": ["hangardoor", "keypad"],
+      "interactables": ["hangardoor", "keypad", "terminal"],
       "longdescription": "Nestled within the desolate martian terrain, the base stands as a solitary outpost, its metallic structures contrasting sharply with the rust-colored landscape. The hum of machinery echoes through the corridors as you navigate the hub of survival on this alien planet. Essential equipment lines the walls, and the air carries a constant reminder of the isolation that comes with being stranded on mars.",
       "asciiart": "",
       "hidden": false
@@ -122,10 +122,16 @@
       "gettable": false
     },
     "radio tower": {
-      "aliases": ["tower"],
+      "aliases": [ "tower" ],
       "description": "A structure for sending and receiving radio signals",
       "hidden": false,
       "gettable": false
+    },
+    "terminal": {
+      "aliases": [ "term", "tty", "terminal" ],
+      "description": "An anachronistically bulky computer terminal.",
+      "hidden": false,
+      "gettable": false
     }
-  }
+    }
 }
