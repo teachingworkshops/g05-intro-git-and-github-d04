@@ -161,6 +161,7 @@ def radioTowerUse(tower, player, item):
 
     if item.isName("ladder"):
         print("You prop the ladder up against the side of the tower.")
+        print("climb to the top")
 
         player.inventory.remove(item)
         player.currentLocation.getAdjLocation("top of radio tower").hidden = False
