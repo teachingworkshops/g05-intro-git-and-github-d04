@@ -9,6 +9,7 @@ from colorOutput import *
 # clear term
 os.system("cls||clear")
 
+
 def print_ascii(fn):
     f = open(fn, "r")
     prRed("".join([line for line in f]))
@@ -101,6 +102,7 @@ class Player:
                 return item
         return None
 
+
 class Item:
     def __init__(self, name, desc, aliases=[]):
         self.name = name
@@ -124,8 +126,7 @@ class Interactable:
         self.hidden = hidden
         self.gettable = gettable
 
-        self.actions = {"use": self.onUse,
-                        "examine": self.onExamine, "get": self.onGet}
+        self.actions = {"use": self.onUse, "examine": self.onExamine, "get": self.onGet}
 
         self.actionAliases = {
             "look": "examine",
@@ -320,7 +321,7 @@ def main():
         print()  # add space
         userWords = userText.split(" ")
         verb = userWords[0]
-        target = userText[len(verb) + 1:]
+        target = userText[len(verb) + 1 :]
 
         lookedUpAction = actionAliases.get(verb.lower())
         if lookedUpAction:
@@ -347,6 +348,8 @@ def main():
             else:
                 you.currentLocation.showPlayer()
                 if you.currentLocation.isName("escape lander"):
+
+                    os.system("cls||clear")
                     endScreen()
                     break
             # use command should be of the form "use <item> on <interactable>
@@ -364,11 +367,9 @@ def main():
             matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
             if matches:
                 usedItem = you.getItem(matches[1].lower())
-                interactable = you.currentLocation.getInteractable(
-                    matches[2].lower())
+                interactable = you.currentLocation.getInteractable(matches[2].lower())
                 if not usedItem:
-                    prRed(
-                        f"    You do not have a {matches[1]} in your inventory.")
+                    prRed(f"    You do not have a {matches[1]} in your inventory.")
                 elif not interactable:
                     prRed(f"     There is no {matches[2]} nearby.")
                 else:
@@ -378,7 +379,9 @@ def main():
                         )
             else:
                 if you.currentLocation.getInteractable(target):
-                    you.currentLocation.getInteractable(target).doInteraction(you, "use")
+                    you.currentLocation.getInteractable(target).doInteraction(
+                        you, "use"
+                    )
                 else:
                     prRed(f'    {target} not found. Try "h" for help')
         else:

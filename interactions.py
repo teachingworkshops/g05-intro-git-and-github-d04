@@ -67,8 +67,19 @@ def roverUse(rover, player, item):
 
 
 def transmitterUse(transmitter, player, item):
-    if item == None:
-        transmitter.onUse  # prints default use message, which says "You can't use this object."
+    if item == None and not player.fixedTransmitter:
+        transmitter.onUse(
+            player, item
+        )  # prints default use message, which says "You can't use this object."
+        return True
+    elif item == None and player.fixedTransmitter:
+        tower = player.currentLocation.getAdjLocation("antenna base")
+        mars = tower.getAdjLocation("mars")
+        lander = mars.getAdjLocation("lander")
+        lander.hidden = True
+        escape = mars.getAdjLocation("escape lander")
+        escape.hidden = False
+        print("You use fixed transmitter! A space craft landed outside!")
         return True
 
     if item.isName("wrench"):
@@ -152,8 +163,7 @@ def radioTowerUse(tower, player, item):
         print("You prop the ladder up against the side of the tower.")
 
         player.inventory.remove(item)
-        player.currentLocation.getAdjLocation(
-            "top of radio tower").hidden = False
+        player.currentLocation.getAdjLocation("top of radio tower").hidden = False
 
         return True
 
