@@ -177,6 +177,16 @@ def startScreen():
     input()
     os.system('cls' if os.name == 'nt' else 'clear')
     
+def endScreen():
+    ascii_file = f"art/ending.txt"
+    print_ascii(ascii_file)
+    prGreen("congratulations you have been rescued from mars!")
+    prPurple("press any key to view credits")
+    input()
+    os.system('cls' if os.name == 'nt' else 'clear')  
+    ascii_file = f"art/credits.txt"
+    print_ascii(ascii_file)
+    
 def buildWorld():
     data = json.load(open("world.json"))
     locations = data["locations"]
