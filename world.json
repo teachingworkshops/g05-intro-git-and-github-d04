@@ -64,7 +64,7 @@
     },
     "rover": {
       "aliases": [],
-      "description": "it's fast but it's broken right now",
+      "description": "You could use this rover to drive out to the radio tower.",
       "working": false,
       "hidden": false,
       "gettable": false

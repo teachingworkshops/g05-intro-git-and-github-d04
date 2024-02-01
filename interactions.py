@@ -46,14 +46,22 @@ def roverUse(rover, player, item):
     if not item == None:
         return False
 
-    # we don't have a way of sending the player to an arbitrary location
-    print("You could use this rover to drive out to the radio tower.")
+    hangar = player.currentLocation
+    tower = hangar.getAdjLocation("antenna base")
+    if tower:
+        player.currentLocation = tower
+        tower.hidden = False
+        tower.showPlayer()
+        print("You drove the rover over to the antenna base")
+    else:
+        print("You could use this rover to drive out to the radio tower.")
+
     return True
 
 
 def transmitterUse(transmitter, player, item):
     if item == None:
-        transmitter.onUse
+        transmitter.onUse  # WARN: no idea what this does (possibly nothing)
         return True
 
     if item.isName("wrench"):

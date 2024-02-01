@@ -257,7 +257,6 @@ def main():
         "h": "help",
         "l": "look",
         "pwd": "look",  # silly bash command
-        "u": "use",
     }
 
     helpActionList = [
@@ -274,7 +273,7 @@ def main():
     prevLoc = None
     you.currentLocation.showPlayer()
     while you.alive:
-        userText = input()
+        userText = input().strip(" ")
 
         # default action is look
         if len(userText) == 0:
@@ -306,7 +305,7 @@ def main():
                     break
 
             if not foundLoc:
-                prRed(f'"     {target}" is not a valid location.')
+                prRed(f'     "{target}" is not a valid location.')
             else:
                 you.currentLocation.showPlayer()
             # use command should be of the form "use <item> on <interactable"
