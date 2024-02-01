@@ -67,7 +67,7 @@
   "interactables": {
     "wrench": {
       "aliases": [],
-      "description": "It's metal and can hit things",
+      "description": "A hefty steel wrench. It can be used to repair things.",
       "hidden": false,
       "gettable": true
     },
@@ -80,14 +80,14 @@
     },
     "control panel": {
       "aliases": ["control panel", "panel"],
-      "description": "It controls things",
+      "description": "A panel covered in switches and dials.",
       "working": true,
       "hidden": false,
       "gettable": false
     },
     "capacitor": {
       "aliases": [],
-      "description": "It's an electrical doodad",
+      "description": "A small electrical component.",
       "hidden": true,
       "gettable": true
     },
@@ -129,7 +129,7 @@
     },
     "terminal": {
       "aliases": [ "term", "tty", "terminal" ],
-      "description": "An anachronistically bulky computer terminal.",
+      "description": "A dusty computer terminal.",
       "hidden": false,
       "gettable": false
     }

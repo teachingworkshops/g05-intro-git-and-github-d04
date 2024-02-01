@@ -28,10 +28,10 @@ def controlPanelExamineAfterOpened(panel, player, item):
 
 def radioUseBeforeFixed(radio, player, item):
     if item == None:
-        print("the radio needs a capacitor")
+        print("The radio doesn't turn on. You open it up and examine the components. You notice that a capacitor has burnt out.")
         return True
     elif item.isName("capacitor"):
-        print("you fix the radio")
+        print("You replace the capacitor.")
 
         player.fixedRadio = True
         radio.name = "radio (fixed)"
@@ -170,7 +170,7 @@ def radioTowerUse(tower, player, item):
 
 def terminalUse(terminal, player, item):
     if item == None:
-        print(f"Fortunately, whomever used this terminal last forgot to use out. There's an open text file that reads:\n\"Note to self: {keypadCode}\"")
+        print(f"Fortunately, whomever used this terminal last forgot to log out. There's an open text file that reads:\n\"Note to self: {keypadCode}\"")
     elif item.isName("wrench"):
         print("You smash up the terminal real good.")
         terminal.name = "terminal (broken)"
