@@ -301,6 +301,7 @@ def main():
         "get/grab/pickup",
         "l(ook)",
         "use <inventory item> on <object in room>",
+        "use <inventory item> on <inventory item>"
         "use <object in room>",
     ]
 
@@ -369,12 +370,15 @@ def main():
         elif verb.lower() == "use":
             matches = re.match(r"use\s+(.+)\s+on\s+(.+)", userText)
             if matches:
-                usedItem = you.getItem(matches[1].lower())
+                usedItem = you.getItem(matches[1].lower()) #checks if first term specified exists within player
                 interactable = you.currentLocation.getInteractable(matches[2].lower())
+                secondItem = you.getItem(matches[2].lower())
                 if not usedItem:
                     prRed(f"    You do not have a {matches[1]} in your inventory.")
                 elif not interactable:
                     prRed(f"     There is no {matches[2]} nearby.")
+                elif secondItem and usedItem.name == "wrench":
+                    interactions.smash(you, {matches[2]})
                 else:
                     if not interactable.doInteraction(you, "use", usedItem):
                         prRed(
