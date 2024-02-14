@@ -176,3 +176,13 @@ def terminalUse(terminal, player, item):
         terminal.name = "terminal (broken)"
         terminal.desc = "It's damaged beyond repair. Maybe you shouldn't have done that..."
         terminal.actions["use"] = terminal.onUse
+
+def smash(player, item):
+    if item.isName("capacitor"):
+        item.name = "smashed capacitor"
+        print(f"For whatever reason, you decide to crush the capacitor beyond recognition. Are you happy now?")
+        
+    elif item.isName("ladder"):
+        item.name = "smashed ladder"
+        item.description = "The rungs that remain are too far apart to be remotely usable. Not much of a ladder anymore, really."
+        print(f"You decide you've had enough of your ladder. After hammering away at the poor vertical convyance device for a few minutes, you come to your senses and cut it out.")
