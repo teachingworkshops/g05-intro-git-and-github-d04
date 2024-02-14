@@ -1,0 +1,137 @@
+{
+  "locations": {
+    "mars": {
+      "aliases": ["planet", "outside"],
+      "description": "Standing alone on the martian surface, surrounded by the solitude of the red landscape.",
+      "nearbyLocations": ["lander", "base", "base hangar", "escape lander"],
+      "interactables": [],
+      "longdescription": "Outside the safety of the base, you find yourself standing in the midst of mars' barren surface. The ground beneath your feet is a mixture of red regolith and rocky outcrops. The distant horizon is marked by the curvature of the planet, and the thin atmosphere lends an otherworldly quality to the landscape. The only sounds are your own breath and the gentle crunch of martian soil underfoot.",
+      "asciiart": "",
+      "hidden": false
+    },
+    "lander": {
+      "aliases": ["ship"],
+      "description": "A broken lander lies on the martian surface, potential salvation hidden in its wreckage.",
+      "nearbyLocations": ["mars"],
+      "interactables": ["wrench", "control panel", "capacitor"],
+      "longdescription": "The lander, once a proud symbol of arrival, now rests battered and broken on the martian soil. its hull, scarred by a rough descent, reveals the harshness of the martian atmosphere. Nearby, a wrench protrudes from the red regolith, a potential tool for repairs. a flickering control panel, despite its damaged state, beckons for interaction, promising insights into the lander's malfunction.",
+      "asciiart": "",
+      "hidden": false
+    },
+    "base": {
+      "aliases": ["home"],
+      "description": "The martian base, a metallic haven amidst the red expanse.",
+      "nearbyLocations": ["mars", "base hangar"],
+      "interactables": ["hangardoor", "keypad", "terminal", "radio"],
+      "longdescription": "Nestled within the desolate martian terrain, the base stands as a solitary outpost, its metallic structures contrasting sharply with the rust-colored landscape. The hum of machinery echoes through the corridors as you navigate the hub of survival on this alien planet. Essential equipment lines the walls, and the air carries a constant reminder of the isolation that comes with being stranded on mars.",
+      "asciiart": "",
+      "hidden": false
+    },
+    "base hangar": {
+      "aliases": ["garage", "hangar"],
+      "description": "A cluttered garage within the base, home to a rugged martian rover.",
+      "nearbyLocations": ["mars", "base", "antenna base"],
+      "interactables": ["rover"],
+      "longdescription": "Within the base's hangar, a martian rover stands as a symbol of exploration and escape. The hangar is currently sealed, and the airlock control panel blinks a red light, signifying closure. The rover, sturdy and equipped for the martian terrain, awaits a daring expedition. To open the hangar and ensure your safe return, you'll need to engage with the control panel",
+      "asciiart": "",
+      "hidden": true
+    },
+    "antenna base": {
+      "aliases": ["antenna", "tower"],
+      "description": "Approaching a distant base with a towering communications structure.",
+      "nearbyLocations": ["mars", "top of antenna tower"],
+      "interactables": [],
+      "longdescription": "Approaching a modest base focused solely on communications, a simple yet purposeful structure stands interconnected with the martian soil. the tower stands tall, antennas reaching out into the vastness of space, a beacon of hope for communication in this isolated world.",
+      "asciiart": "",
+      "hidden": true
+    },
+    "top of antenna tower": {
+      "aliases": ["antenna top", "top", "up"],
+      "description": "Atop the communication tower, a commanding view of the martian world unfolds. There is a main control panel",
+      "nearbyLocations": ["antenna base"],
+      "interactables": ["transmitter"],
+      "longdescription": "Climbing to the summit of the communications tower, you find yourself atop a metal platform with a panoramic view of the martian landscape. The rhythmic blinking of communication equipment surrounds you, and the thin atmosphere makes the stars above seem unusually vivid. From this vantage point, you can see the entirety of the base, the distant landers, and the vast expanse of the martian surface, emphasizing the isolation that defines your journey.",
+      "asciiart": "",
+      "hidden": false
+    },
+    "escape lander": {
+      "aliases": ["escape", "rescue", "lander"],
+      "description": "The escape lander has come to rescue you",
+      "nearbyLocations": ["mars"],
+      "interactables": [""],
+      "longdescription": "",
+      "asciiart": "",
+      "hidden": true
+    }
+  },
+  "interactables": {
+    "wrench": {
+      "aliases": [],
+      "description": "A hefty steel wrench. It can be used to repair things.",
+      "hidden": false,
+      "gettable": true
+    },
+    "rover": {
+      "aliases": [],
+      "description": "You could use this rover to drive out to the radio tower.",
+      "working": false,
+      "hidden": false,
+      "gettable": false
+    },
+    "control panel": {
+      "aliases": ["control panel", "panel"],
+      "description": "A panel covered in switches and dials.",
+      "working": true,
+      "hidden": false,
+      "gettable": false
+    },
+    "capacitor": {
+      "aliases": [],
+      "description": "A small electrical component.",
+      "hidden": true,
+      "gettable": true
+    },
+    "radio": {
+      "aliases": ["radio"],
+      "description": "The radio is broken",
+      "hidden": false,
+      "gettable": false
+    },
+    "ladder": {
+      "aliases": [],
+      "description": "A vertical conveyance device",
+      "hidden": false,
+      "gettable": true
+    },
+    "transmitter": {
+      "aliases": ["transmitter"],
+      "description": "A crucial part of the antenna. It appears to be broken in a way that only a wrench can fix.",
+      "hidden": false,
+      "gettable": false
+    },
+    "hangardoor": {
+      "aliases": ["door"],
+      "description": "A door leading to the hangar. It's closed. There's a keypad above the door handle.",
+      "hidden": false,
+      "gettable": false
+    },
+    "keypad": {
+      "aliases": ["pad"],
+      "description": "A 9-digit keypad",
+      "hidden": true,
+      "gettable": false
+    },
+    "radio tower": {
+      "aliases": [ "tower" ],
+      "description": "A structure for sending and receiving radio signals",
+      "hidden": false,
+      "gettable": false
+    },
+    "terminal": {
+      "aliases": [ "term", "tty", "terminal" ],
+      "description": "A dusty computer terminal.",
+      "hidden": false,
+      "gettable": false
+    }
+    }
+}
