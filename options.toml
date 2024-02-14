@@ -1,0 +1,9 @@
+#current options are english, pirate, in double quotes of course
+[language]
+language = "pirate"
+
+[languages.english]
+world_json = "en_us.json"
+
+[languages.pirate]
+world_json = "pr_hs.json"

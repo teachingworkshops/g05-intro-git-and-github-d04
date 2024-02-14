@@ -1,4 +1,5 @@
 import json
+import toml
 import os
 import re
 
@@ -203,7 +204,12 @@ def endScreen():
 
 
 def buildWorld():
-    data = json.load(open("world.json"))
+    options_file = "options.toml"
+    options = toml.load(options_file)
+    language = options["language"]["language"]
+    world_filename = options["languages"][language]["world_json"]
+    with open("lang/"+world_filename, "r") as f:
+        data = json.load(f)
     locations = data["locations"]
 
     for key in locations.keys():

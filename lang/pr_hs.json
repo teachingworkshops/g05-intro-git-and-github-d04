@@ -1,0 +1,137 @@
+{
+  "locations": {
+    "mars": {
+      "aliases": ["planet", "outside"],
+      "description": "Arrr! Standin' alone on th' Martian surface, surrounded by th' solitude of th' crimson landscape.",
+      "nearbyLocations": ["lander", "base", "base hangar", "escape lander"],
+      "interactables": [],
+      "longdescription": "Outside th' safety o' th' base, ye find yerself standin' in th' midst o' Mars' barren surface. Th' ground beneath yer feet be a mixture o' red regolith an' rocky outcrops. Th' distant horizon be marked by th' curvature o' th' planet, an' th' thin atmosphere lends an otherworldly quality to th' landscape. Th' only sounds be yer own breath an' th' gentle crunch o' Martian soil underfoot. Arrr!",
+      "asciiart": "",
+      "hidden": false
+    },
+    "lander": {
+      "aliases": ["ship"],
+      "description": "A broken lander be lyin' on th' Martian surface, potential salvation hidden in its wreckage, me hearties!",
+      "nearbyLocations": ["mars"],
+      "interactables": ["wrench", "control panel", "capacitor"],
+      "longdescription": "Upon th' crimson shores o' Mars, there lay a once-proud lander, now but a weathered relic o' exploration. Its hull, etched with scars from a tumultuous descent, bore witness to th' relentless fury o' th' Martian atmosphere. Nearby, juttin' from th' rusty soil, a trusty wrench stood as a beacon o' hope, a tool awaitin' its wielder's skillful hand. And lo, amidst th' wreckage, a flickerin' control panel whispered secrets o' malfunction, a siren's call temptin' brave souls to unravel its mysteries. Aye, 'twas a scene ripe with opportunity, where adventure danced with danger under th' watchful gaze o' th' Martian sky.",
+      "asciiart": "",
+      "hidden": false
+    },
+    "base": {
+      "aliases": ["home"],
+      "description": "In th' heart o' th' crimson desert o' Mars, there be a metallic haven, a bastion o' humanity amidst th' vast expanse o' red. Ye'll find th' Martian base, sturdy an' resolute, standin' tall against th' relentless winds an' th' unforgivin' terrain. Its gleamin' metal walls reflect th' fiery glow o' th' Martian sun, a beacon o' civilization in a land untouched by time.",
+      "nearbyLocations": ["mars", "base hangar"],
+      "interactables": ["hangardoor", "keypad", "terminal", "radio"],
+      "longdescription": "n th' desolate Martian terrain, nestled snugly 'mongst th' rust-colored landscape, stands a solitary outpost: th' base. Its metallic structures jut boldly 'gainst th' barren horizon, a stark contrast to th' rugged beauty o' Mars. Within its corridors, th' hum o' machinery fills th' air, a symphony o' survival in this alien realm. Ye navigate th' hub o' existence on this red planet, where essential equipment lines th' walls like treasures in a pirate's chest, an' th' very air whispers tales o' isolation, remindin' ye o' yer plight stranded on Mars. Arrr, 'tis a place where th' spirit o' adventure meets th' harsh realities o' exploration, where every breath be a testament to th' indomitable will o' humanity.",
+      "asciiart": "",
+      "hidden": false
+    },
+    "base hangar": {
+      "aliases": ["garage", "hangar"],
+      "description": "In th' base's garage, there be a cluttered nest fer a rugged Martian rover. 'Tis a place o' tools scattered like doubloons, an' spare parts clutterin' every corner like barnacles on a ship. Th' rover, tough as a barnacle-encrusted hull, stands ready fer th' next adventure 'cross th' Martian sands. Aye, 'tis a simple abode fer a bold explorer, a testament to th' spirit o' discovery.",
+      "nearbyLocations": ["mars", "base", "antenna base"],
+      "interactables": ["rover"],
+      "longdescription": "In th' base's hangar, a Martian rover stands tall, a beacon o' exploration an' escape. Th' hangar be sealed tight, its airlock control panel blinkin' a red light, markin' its closure. Th' rover, sturdy an' ready fer th' Martian terrain, awaits a daring expedition. To open th' hangar an' ensure yer safe return, ye'll need to engage with th' control panel, me hearty. Arrr, th' call o' adventure awaits, but only ye can unlock its secrets!",
+      "asciiart": "",
+      "hidden": true
+    },
+    "antenna base": {
+      "aliases": ["antenna", "tower"],
+      "description": "As ye sail 'cross th' Martian plains, a distant base comes inta view, its silhouette piercin' th' horizon like a mighty mast atop a ship. Towerin' above all else be a communications structure, reachin' fer th' heavens like a masthead seekin' guidance from th' stars.",
+      "nearbyLocations": ["mars", "top of antenna tower"],
+      "interactables": [],
+      "longdescription": "As ye venture closer to a modest base, its focus solely on communications becomes apparent. 'Tis a humble structure, yet purposeful, standin' firmly intertwined with th' Martian soil. Th' tower rises tall, its antennas stretchin' out into th' boundless expanse o' space like eager arms reachin' fer connection. 'Tis a beacon o' hope in this isolated world, a promise o' communication amidst th' silence o' th' Martian wilderness. Ye can almost hear th' whispers o' distant voices carried on th' winds o' th' red planet, beckonin' ye closer to th' heart o' civilization in this alien land.",
+      "asciiart": "",
+      "hidden": true
+    },
+    "top of antenna tower": {
+      "aliases": ["antenna top", "top", "up"],
+      "description": "Atop th' communication tower, a commandin' view o' th' Martian world unfolds like a treasure map spread before ye. 'Tis a sight to behold.",
+      "nearbyLocations": ["antenna base"],
+      "interactables": ["transmitter"],
+      "longdescription": "As ye climb to th' summit o' th' communications tower, ye find yerself standin' atop a metal platform, with a panoramic view o' th' Martian landscape spread afore ye like a grand tapestry. Th' rhythmic blinkin' o' communication equipment surrounds ye, a constant reminder o' th' vital role this outpost plays in bridgin' th' gap between worlds.",
+      "asciiart": "",
+      "hidden": false
+    },
+    "escape lander": {
+      "aliases": ["escape", "rescue", "lander"],
+      "description": "Me hearties! 'Tis a moment o' joyous relief! Th' escape lander has come to rescue ye from th' clutches o' isolation on this crimson world. Its sleek frame gleams in th' Martian sunlight, a beacon o' salvation in th' midst o' desolation.",
+      "nearbyLocations": ["mars"],
+      "interactables": [""],
+      "longdescription": "",
+      "asciiart": "",
+      "hidden": true
+    }
+  },
+  "interactables": {
+    "wrench": {
+      "aliases": [],
+      "description": "Th' mighty steel wrench! 'Tis a sturdy tool fit fer a sailor's hand, capable o' mendin' th' most stubborn o' contraptions.",
+      "hidden": false,
+      "gettable": true
+    },
+    "rover": {
+      "aliases": [],
+      "description": "Aye, me hearty! Ye could harness th' power o' this trusty rover to traverse th' Martian terrain an' make yer way out to th' radio tower.",
+      "working": false,
+      "hidden": false,
+      "gettable": false
+    },
+    "control panel": {
+      "aliases": ["control panel", "panel"],
+      "description": "Arr, behold th' panel covered in switches an' dials!",
+      "working": true,
+      "hidden": false,
+      "gettable": false
+    },
+    "capacitor": {
+      "aliases": [],
+      "description": "Behold this small electrical component, a humble yet crucial piece o' th' puzzle in th' grand machinery o' th' universe!",
+      "hidden": true,
+      "gettable": true
+    },
+    "radio": {
+      "aliases": ["radio"],
+      "description": "Shiver me timbers! 'Tis a dire situation when th' radio be broken!",
+      "hidden": false,
+      "gettable": false
+    },
+    "ladder": {
+      "aliases": [],
+      "description": "'Tis a contraption designed to transport ye from one level to another",
+      "hidden": false,
+      "gettable": true
+    },
+    "transmitter": {
+      "aliases": ["transmitter"],
+      "description": "Avast ye! A crucial part o' th' antenna be broken, but fear not, for a solution may lie in the trusty grip o' yer wrench!",
+      "hidden": false,
+      "gettable": false
+    },
+    "hangardoor": {
+      "aliases": ["door"],
+      "description": "Ahoy there! A closed door, guarded by a keypad, be a challenge fit fer a true buccaneer!",
+      "hidden": false,
+      "gettable": false
+    },
+    "keypad": {
+      "aliases": ["pad"],
+      "description": "A 9-digit keypad, ye say? 'Tis a formidable foe",
+      "hidden": true,
+      "gettable": false
+    },
+    "radio tower": {
+      "aliases": [ "tower" ],
+      "description": "Behold th' mighty structure fer sendin' an' receivin' radio signals!",
+      "hidden": false,
+      "gettable": false
+    },
+    "terminal": {
+      "aliases": [ "term", "tty", "terminal" ],
+      "description": "A relic o' technology from days gone by! Covered in a layer o' Martian dust like barnacles on a ship",
+      "hidden": false,
+      "gettable": false
+    }
+    }
+}
