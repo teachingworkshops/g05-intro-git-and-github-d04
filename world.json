@@ -91,12 +91,6 @@
       "hidden": true,
       "gettable": true
     },
-    "smashed capacitor": {
-      "aliases": [],
-      "description": "The remains of what could have been a very useful and important component, reduced to a tiny pile of crushed ceramic, metal and plastic.",
-      "hidden": true,
-      "gettable": true
-    },
     "radio": {
       "aliases": ["radio"],
       "description": "The radio is broken",
@@ -106,12 +100,6 @@
     "ladder": {
       "aliases": [],
       "description": "A vertical conveyance device",
-      "hidden": false,
-      "gettable": true
-    },
-    "smashed ladder": {
-      "aliases": [],
-      "description": "The rungs that remain are too far apart to be remotely usable. Not much of a ladder anymore, really.",
       "hidden": false,
       "gettable": true
     },

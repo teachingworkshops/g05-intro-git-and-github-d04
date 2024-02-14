@@ -378,7 +378,7 @@ def main():
                 elif not interactable:
                     prRed(f"     There is no {matches[2]} nearby.")
                 elif secondItem and usedItem.name == "wrench":
-                    interactions.smash(you, {matches[2]})
+                    interactions.smash(you, secondItem)
                 else:
                     if not interactable.doInteraction(you, "use", usedItem):
                         prRed(
