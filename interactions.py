@@ -178,9 +178,8 @@ def terminalUse(terminal, player, item):
         terminal.actions["use"] = terminal.onUse
 
 def smash(player, item):
-    if item.name == "capacitor":
+    if item.isName("capacitor"):
         item.name = "smashed capacitor"
-        item.description = "The remains of what could have been a very useful and important component, reduced to a tiny pile of crushed ceramic, metal and plastic."
         print(f"For whatever reason, you decide to crush the capacitor beyond recognition. Are you happy now?")
         
     elif item.isName("ladder"):
